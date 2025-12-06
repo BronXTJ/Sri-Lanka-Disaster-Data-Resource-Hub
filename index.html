@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SL Disaster Data Resource Hub</title>
+    <meta name="description" content="A curated educational directory of verified data sources regarding Sri Lanka's disaster management ecosystem.">
+    <!-- Updated Favicon (Blue Shield with Info 'i') -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%232563eb'/%3E%3Cpath d='M12 21s7-3.5 7-8.8V5l-7-2.6L5 5v7.2c0 5.3 7 8.8 7 8.8z' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='12' cy='8' r='1' fill='white'/%3E%3Cpath d='M12 11v5' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            850: '#151e2e', // Custom dark shade
+                            950: '#020617',
+                        },
+                        brand: {
+                            DEFAULT: '#2563eb', // Blue-600
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            900: '#1e3a8a',
+                        }
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 2s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { 
+    font-family: 'Inter', sans-serif; 
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+}
+
+/* Prevent horizontal scroll */
+* {
+    max-width: 100%;
+}
+        
+        /* Glass Header Styles */
+        .glass-header { 
+            background: rgba(255, 255, 255, 0.90); 
+            backdrop-filter: blur(12px); 
+            border-bottom: 1px solid #e2e8f0; 
+        }
+        .dark .glass-header {
+            background: rgba(15, 23, 42, 0.90);
+            border-bottom: 1px solid #1e293b;
+        }
+        
+        /* Card Hover Effects */
+        @media (min-width: 768px) {
+            .resource-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+            .resource-card:hover { transform: translateY(-6px); box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.15); }
+            .dark .resource-card:hover { box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.5); border-color: #475569; }
+        }
+        
+        /* Mobile Active State for Cards */
+        .resource-card:active { transform: scale(0.98); transition: transform 0.1s; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        .dark ::-webkit-scrollbar-track { background: #0f172a; }
+        .dark ::-webkit-scrollbar-thumb { background: #334155; }
+        .dark ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+        /* Skip Link for Accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #2563eb;
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.2s;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Hide scrollbar for horizontal nav but allow scrolling */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* --- NEW: Name Shimmer Animation --- */
+        .animate-text-gradient {
+            background-size: 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: bg-pan 3s linear infinite;
+        }
+        @keyframes bg-pan {
+            from { background-position: 0% center; }
+            to { background-position: 200% center; }
+        }
+    </style>
+    
+    <!-- Script to set initial theme based on user preference -->
+    <script>
+        if (typeof window !== 'undefined' && window.localStorage) {
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        }
+    </script>
+</head>
+<body class="antialiased flex flex-col min-h-screen bg-f8fafc dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-300 overflow-x-hidden">
+
+    <!-- Skip to Content Link (Accessibility) -->
+    <a href="#main-content" class="skip-link focus:ring-2 focus:ring-offset-2 focus:ring-brand rounded-br-lg font-bold text-sm px-4 py-2">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 glass-header shadow-sm transition-all duration-300" role="navigation" aria-label="Main Navigation">
+        <div class="container mx-auto px-4 h-16 md:h-20 flex items-center justify-between">
+            
+            
+             <!-- Left: Logo Area -->
+            <a href="#" class="flex items-center gap-1.5 sm:gap-2.5 group focus:outline-none focus:ring-2 focus:ring-brand rounded-lg p-1 shrink-0 transition-transform active:scale-95 mr-2 sm:mr-4" aria-label="SL Disaster InfoHub Home">
+                <div class="bg-brand text-white p-1.5 sm:p-2 rounded-xl shadow-md group-hover:bg-opacity-80 transition-colors">
+                    <!-- New Custom Logo: Shield (Disaster) + Info (Information) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <!-- Shield Shape -->
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        <!-- 'i' Information Symbol -->
+                        <line x1="12" y1="8" x2="12" y2="8.01" stroke-width="3"></line>
+                        <line x1="12" y1="11" x2="12" y2="17"></line>
+                    </svg>
+                </div>
+
+                <!-- All screen sizes show both lines, just smaller text on mobile -->
+                <div class="leading-tight">
+                    <div class="font-bold text-sm sm:text-lg md:text-xl text-slate-800 dark:text-white tracking-tight whitespace-nowrap">SL Disaster</div>
+                    <div class="text-[9px] sm:text-xs font-semibold text-brand dark:text-brand uppercase tracking-widest whitespace-nowrap">InfoHub</div>
+                </div>
+            </a>
+
+            <!-- Right: Actions (Real-Time + Search + Theme + Hamburger) -->
+          <div class="flex items-center gap-1.5 sm:gap-2 md:gap-3 ml-auto shrink-0 flex-nowrap">
+                
+                <!-- Real-Time (Highlighted Button) -->
+       <a href="#response-tools" class="px-3 md:px-4 py-2 text-xs md:text-sm font-bold text-white bg-red-600 hover:bg-red-700 rounded-lg shadow-md hover:shadow-lg hover:shadow-red-500/30 transition-all flex items-center gap-2 transform hover:-translate-y-0.5 whitespace-nowrap focus:ring-2 focus:ring-offset-2 focus:ring-red-500 focus:outline-none active:scale-95">
+    <span class="relative flex h-2 w-2">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-200 opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+    </span>
+    Real-Time Tools
+</a>
+                <!-- Nav Search Button -->
+                <button id="nav-search-btn" class="p-2 md:p-2.5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-brand dark:focus:ring-slate-700 transition-all active:scale-90" aria-label="Search Resources" title="Search">
+    <i class="fas fa-search text-base md:text-lg" aria-hidden="true"></i>
+</button>
+
+                <!-- Theme Toggle -->
+               <button id="theme-toggle" class="p-2 md:p-2.5 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-brand dark:focus:ring-slate-700 transition-all active:scale-90" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
+    <i id="theme-icon" class="fas fa-moon text-base md:text-lg transform transition-transform duration-500 rotate-0" aria-hidden="true"></i>
+</button>
+                
+
+<!-- Hamburger Menu Toggle -->
+                <button id="menu-toggle" class="p-2 md:p-2.5 rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-brand dark:focus:ring-slate-700 transition-all active:scale-90 relative" aria-label="Open Menu" title="Menu">
+                    <!-- Pulsing outer ring -->
+                    <span class="absolute inset-0 rounded-lg animate-pulse bg-brand/20"></span>
+                    
+                    <!-- GOLDEN YELLOW Notification dot (pulsing) -->
+                    <span class="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-yellow-400 shadow-lg shadow-yellow-400/50"></span>
+                    </span>
+                    
+                    <!-- Icon with bounce animation -->
+                    <i class="fas fa-bars text-base md:text-lg relative z-10 animate-bounce-slow" aria-hidden="true"></i>
+                </button>
+
+
+
+            </div>
+        </div>
+
+        <!-- Collapsible Hamburger Menu -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 shadow-xl transition-all duration-300">
+            <div class="container mx-auto px-4 py-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                <a href="#scientific" class="menu-link px-4 py-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400"><i class="fas fa-flask text-xs"></i></div>
+                    Scientific
+                </a>
+                <a href="#sat-maps" class="menu-link px-4 py-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400"><i class="fas fa-map text-xs"></i></div>
+                    Sat & Maps
+                </a>
+                <a href="#management" class="menu-link px-4 py-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center text-red-600 dark:text-red-400"><i class="fas fa-bullhorn text-xs"></i></div>
+                    Crisis Mgmt
+                </a>
+                <a href="#humanitarian" class="menu-link px-4 py-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400"><i class="fas fa-hand-holding-heart text-xs"></i></div>
+                    Humanitarian
+                </a>
+                <a href="#articles" class="menu-link px-4 py-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-600 dark:text-amber-400"><i class="fas fa-lightbulb text-xs"></i></div>
+                    Insights
+                </a>
+                <a href="#contribute" class="menu-link px-4 py-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400"><i class="fas fa-circle-plus text-xs"></i></div>
+                    Contribute
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero / Introduction -->
+    <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 relative overflow-hidden transition-colors duration-300">
+        <div class="absolute inset-0 bg-slate-50 dark:bg-slate-950 opacity-50 z-0"></div>
+        <div class="absolute -top-24 -right-24 w-64 h-64 bg-brand/20 rounded-full blur-3xl opacity-60 animate-pulse"></div>
+        <div class="absolute top-24 -left-24 w-72 h-72 bg-purple-50 dark:bg-purple-900/20 rounded-full blur-3xl opacity-60 animate-pulse" style="animation-delay: 1s;"></div>
+
+        <div class="container mx-auto px-4 py-12 md:py-24 text-center max-w-4xl relative z-10">
+            <!-- Hero Content -->
+            <div id="hero-content" class="transition-opacity duration-300">
+                <span class="inline-block py-1.5 px-4 rounded-full bg-brand/10 dark:bg-brand/20 text-brand dark:text-brand text-xs md:text-sm font-bold tracking-wide uppercase mb-6 shadow-sm border border-brand/20 dark:border-brand/30">
+                    <i class="fas fa-check-circle mr-2"></i> Verified Data Sources
+                </span>
+                <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white mb-6 leading-tight tracking-tight">
+                    Sri Lanka Disaster <br class="hidden md:block" /> Data Resource Hub
+                </h1>
+                <p class="text-base md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto mb-10">
+                    A central directory where students, researchers, and citizens can access official datasets, reports, and operational logs related to <strong class="whitespace-nowrap">Cyclone Ditwa</strong>: floods, landslides, and affected communities.
+                </p>
+            </div>
+
+            <!-- Search Bar Section -->
+            <div class="max-w-2xl mx-auto mb-10 relative z-20">
+                <div class="relative group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-brand to-purple-600 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <i class="fas fa-search text-slate-400 group-focus-within:text-brand transition-colors"></i>
+                        </div>
+                        <input type="text" id="global-search" 
+                            class="block w-full pl-11 pr-10 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl leading-5 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand focus:border-brand sm:text-sm shadow-sm transition-all duration-300"
+                            placeholder="Search for agencies, maps, reports, or keywords..."
+                            aria-label="Search resources">
+                        <!-- Clear Button -->
+                        <button id="clear-search" class="absolute inset-y-0 right-0 pr-3 flex items-center hidden text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition">
+                            <i class="fas fa-times-circle"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Search Stats (Hidden by default) -->
+                <div id="search-stats" class="absolute right-0 -bottom-6 text-xs text-slate-400 dark:text-slate-500 hidden">
+                    Found <span id="match-count" class="font-bold text-brand">0</span> results
+                </div>
+            </div>
+
+            <div id="hero-actions" class="flex flex-col sm:flex-row items-center justify-center gap-4 transition-opacity duration-300">
+                <a href="#scientific" class="w-full sm:w-auto px-8 py-4 bg-brand hover:bg-opacity-90 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 active:scale-95 focus:ring-4 focus:ring-brand/50 outline-none">
+                    Explore Data
+                </a>
+                <a href="#response-tools" class="w-full sm:w-auto px-8 py-4 bg-red-600 hover:bg-red-700 text-white border border-red-600 font-bold rounded-xl transition-all shadow-lg hover:shadow-red-500/30 transform hover:-translate-y-1 active:scale-95 focus:ring-4 focus:ring-red-200 dark:focus:ring-red-900 outline-none flex items-center justify-center gap-3">
+                    <span class="relative flex h-3 w-3">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+                    </span>
+                    View Real-Time Info
+                </a>
+            </div>
+
+            <!-- Animated Scroll Indicator -->
+            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 hidden md:block animate-bounce-slow text-slate-400 dark:text-slate-600">
+                <i class="fas fa-chevron-down text-2xl" aria-hidden="true"></i>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="container mx-auto px-4 py-12 md:py-16 space-y-16 md:space-y-24 max-w-7xl flex-grow scroll-mt-20">
+
+        <!-- Search Results View (Hidden by default) -->
+        <div id="search-results-view" class="hidden min-h-[50vh]">
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 border-b border-slate-200 dark:border-slate-800 pb-4">
+                Search Results
+            </h2>
+            <div id="search-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Matched cards will be injected here -->
+            </div>
+            <div id="no-results-msg" class="hidden text-center py-20">
+                <div class="inline-block p-4 bg-slate-100 dark:bg-slate-800 rounded-full text-slate-400 mb-4">
+                    <i class="fas fa-search text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-700 dark:text-slate-300">No results found</h3>
+                <p class="text-slate-500">Try adjusting your spelling or search for broader terms.</p>
+            </div>
+        </div>
+
+        <!-- Original Content Wrapper -->
+        <div id="original-content" class="space-y-16 md:space-y-24">
+
+            <!-- SECTION 1: Scientific & Environmental Data -->
+            <section id="scientific" class="scroll-mt-24">
+                <div class="flex flex-col md:flex-row md:items-center gap-4 mb-8">
+                    <div class="w-14 h-14 bg-brand/20 text-brand rounded-2xl flex items-center justify-center text-3xl shadow-sm shrink-0">
+                        <i class="fas fa-microscope" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">Scientific & Environmental Data</h2>
+                        <p class="text-sm md:text-base text-slate-500 dark:text-slate-400 mt-1">Sources for meteorological, hydrological, and geological measurements.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- International Charter -->
+                    <article class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 border-t-4 border-t-indigo-500 resource-card transition duration-300 flex flex-col h-full hover:shadow-xl hover:shadow-indigo-500/10 group focus-within:ring-2 focus-within:ring-indigo-500">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="bg-indigo-50 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-200 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide">Satellite / Geospatial</div>
+                            <i class="fas fa-satellite text-indigo-500 dark:text-indigo-400 text-4xl opacity-80 group-hover:scale-110 transition-transform duration-300" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-2">International Charter</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-5 leading-relaxed flex-grow">
+                            Global collaboration of space agencies (ESA, USGS, etc.) providing rapid satellite imagery and damage mapping for the activated disaster zone.
+                        </p>
+                        <div class="bg-slate-50 dark:bg-white/5 p-4 rounded-xl text-xs text-slate-600 dark:text-slate-400 mb-5 border border-slate-100 dark:border-slate-800">
+                            <strong class="block text-slate-800 dark:text-slate-200 mb-2">Available Datasets:</strong>
+                            <ul class="space-y-1.5">
+                                <li class="flex items-center"><i class="fas fa-check text-indigo-500 mr-2" aria-hidden="true"></i>High-Res Satellite Imagery</li>
+                                <li class="flex items-center"><i class="fas fa-check text-indigo-500 mr-2" aria-hidden="true"></i>Flood Extent Shapefiles</li>
+                                <li class="flex items-center"><i class="fas fa-check text-indigo-500 mr-2" aria-hidden="true"></i>Damage Assessment Reports</li>
+                            </ul>
+                        </div>
+                        <a href="https://disasterscharter.org/activations/flood-in-sri-lanka-activation-1005-" target="_blank" class="w-full inline-flex items-center justify-center px-4 py-3 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold rounded-xl transition shadow-md hover:shadow-lg hover:shadow-indigo-500/30 active:scale-95 focus:outline-none">
+                            View Activation Data <i class="fas fa-external-link-alt ml-2 text-xs" aria-hidden="true"></i>
+                        </a>
+                    </article>
+
+                    <!-- Met Dept -->
+                    <article class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 border-t-4 border-t-blue-500 resource-card transition duration-300 flex flex-col h-full hover:shadow-xl hover:shadow-blue-500/10 group focus-within:ring-2 focus-within:ring-blue-500">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="bg-blue-50 dark:bg-blue-900/40 text-blue-700 dark:text-blue-200 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide">Atmospheric</div>
+                            <i class="fas fa-cloud-showers-heavy text-blue-500 dark:text-blue-400 text-4xl opacity-80 group-hover:scale-110 transition-transform duration-300" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-2">Meteorology Dept.</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-5 leading-relaxed flex-grow">
+                            Primary source for forecasting. Provides cyclone tracking maps, 24-hour rainfall logs, and wind speed data.
+                        </p>
+                        <div class="bg-slate-50 dark:bg-white/5 p-4 rounded-xl text-xs text-slate-600 dark:text-slate-400 mb-5 border border-slate-100 dark:border-slate-800">
+                            <strong class="block text-slate-800 dark:text-slate-200 mb-2">Available Datasets:</strong>
+                            <ul class="space-y-1.5">
+                                <li class="flex items-center"><i class="fas fa-check text-blue-500 mr-2" aria-hidden="true"></i>Radar Imagery (Precipitation)</li>
+                                <li class="flex items-center"><i class="fas fa-check text-blue-500 mr-2" aria-hidden="true"></i>Cyclone Path Predictions</li>
+                                <li class="flex items-center"><i class="fas fa-check text-blue-500 mr-2" aria-hidden="true"></i>Warning Levels (Red/Amber)</li>
+                            </ul>
+                        </div>
+                        <a href="http://www.meteo.gov.lk/" target="_blank" class="w-full inline-flex items-center justify-center px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-xl transition shadow-md hover:shadow-lg hover:shadow-blue-500/30 active:scale-95 focus:outline-none">
+                            Visit Official Site <i class="fas fa-external-link-alt ml-2 text-xs" aria-hidden="true"></i>
+                        </a>
+                    </article>
+
+                    <!-- NBRO -->
+                    <article class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 border-t-4 border-t-amber-500 resource-card transition duration-300 flex flex-col h-full hover:shadow-xl hover:shadow-amber-500/10 group focus-within:ring-2 focus-within:ring-amber-500">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="bg-amber-50 dark:bg-amber-900/40 text-amber-700 dark:text-amber-200 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide">Geological</div>
+                            <i class="fas fa-mountain text-amber-500 dark:text-amber-400 text-4xl opacity-80 group-hover:scale-110 transition-transform duration-300" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-2">NBRO (Landslides)</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-5 leading-relaxed flex-grow">
+                            National Building Research Organisation. Issues landslide risk assessments based on soil saturation levels.
+                        </p>
+                        <div class="bg-slate-50 dark:bg-white/5 p-4 rounded-xl text-xs text-slate-600 dark:text-slate-400 mb-5 border border-slate-100 dark:border-slate-800">
+                            <strong class="block text-slate-800 dark:text-slate-200 mb-2">Available Datasets:</strong>
+                            <ul class="space-y-1.5">
+                                <li class="flex items-center"><i class="fas fa-check text-amber-500 mr-2" aria-hidden="true"></i>Early Warning Levels (1-3)</li>
+                                <li class="flex items-center"><i class="fas fa-check text-amber-500 mr-2" aria-hidden="true"></i>Risk Zone Maps (GIS)</li>
+                                <li class="flex items-center"><i class="fas fa-check text-amber-500 mr-2" aria-hidden="true"></i>Soil Instability Reports</li>
+                            </ul>
+                        </div>
+                        <a href="https://www.nbro.gov.lk/" target="_blank" class="w-full inline-flex items-center justify-center px-4 py-3 bg-amber-600 hover:bg-amber-700 text-white text-sm font-bold rounded-xl transition shadow-md hover:shadow-lg hover:shadow-amber-500/30 active:scale-95 focus:outline-none">
+                            Visit Official Site <i class="fas fa-external-link-alt ml-2 text-xs" aria-hidden="true"></i>
+                        </a>
+                    </article>
+
+                    <!-- Irrigation Dept -->
+                    <article class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 border-t-4 border-t-cyan-500 resource-card transition duration-300 flex flex-col h-full hover:shadow-xl hover:shadow-cyan-500/10 group focus-within:ring-2 focus-within:ring-cyan-500">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="bg-cyan-50 dark:bg-cyan-900/40 text-cyan-700 dark:text-cyan-200 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide">Hydrological</div>
+                            <i class="fas fa-water text-cyan-500 dark:text-cyan-400 text-4xl opacity-80 group-hover:scale-110 transition-transform duration-300" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-2">Irrigation Dept.</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mb-5 leading-relaxed flex-grow">
+                            Monitors river basins and reservoirs. Crucial for understanding downstream flood risks in low-lying areas.
+                        </p>
+                        <div class="bg-slate-50 dark:bg-white/5 p-4 rounded-xl text-xs text-slate-600 dark:text-slate-400 mb-5 border border-slate-100 dark:border-slate-800">
+                            <strong class="block text-slate-800 dark:text-slate-200 mb-2">Available Datasets:</strong>
+                            <ul class="space-y-1.5">
+                                <li class="flex items-center"><i class="fas fa-check text-cyan-500 mr-2" aria-hidden="true"></i>River Gauge Levels (Live)</li>
+                                <li class="flex items-center"><i class="fas fa-check text-cyan-500 mr-2" aria-hidden="true"></i>Reservoir Gate Status</li>
+                                <li class="flex items-center"><i class="fas fa-check text-cyan-500 mr-2" aria-hidden="true"></i>Inundation Area Maps</li>
+                            </ul>
+                        </div>
+                        <a href="https://www.irrigation.gov.lk/" target="_blank" class="w-full inline-flex items-center justify-center px-4 py-3 bg-cyan-600 hover:bg-cyan-700 text-white text-sm font-bold rounded-xl transition shadow-md hover:shadow-lg hover:shadow-cyan-500/30 active:scale-95 focus:outline-none">
+                            Visit Official Site <i class="fas fa-external-link-alt ml-2 text-xs" aria-hidden="true"></i>
+                        </a>
+                    </article>
+                </div>
+            </section>
+
+            <!-- SECTION 2: Satellite Intelligence & Map Visualization -->
+            <section id="sat-maps" class="scroll-mt-24">
+                <div class="flex flex-col md:flex-row md:items-center gap-4 mb-8">
+                    <div class="w-14 h-14 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-300 rounded-2xl flex items-center justify-center text-3xl shadow-sm shrink-0">
+                        <i class="fas fa-satellite" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">Satellite Intelligence & Map Visualization</h2>
+                        <p class="text-sm md:text-base text-slate-500 dark:text-slate-400 mt-1">Advanced geospatial data and hydrological charts for in-depth analysis.</p>
+                    </div>
+                </div>
+
+                <!-- Grid Layout -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+
+                    <!-- Card 1: Vantor Open Data Program (Satellite Imagery) -->
+                    <article class="bg-gradient-to-br from-yellow-900 to-slate-900 dark:from-yellow-950 dark:to-slate-950 rounded-2xl p-6 md:p-8 text-white shadow-lg flex flex-col h-full relative overflow-hidden group hover:-translate-y-2 transition duration-300">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-yellow-500 rounded-full blur-3xl opacity-10 -mr-10 -mt-10 group-hover:opacity-20 transition duration-500"></div>
+                        
+                        <div class="relative z-10 flex-grow">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="bg-yellow-600/30 border border-yellow-400/30 text-yellow-200 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+                                    <i class="fas fa-globe-americas mr-1"></i> Satellite Intelligence
+                                </div>
+                            </div>
+                            <h3 class="font-bold text-xl mb-2">Vantor Open Data Program</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                                High-definition post-event satellite imagery via Maxar Xpress. Critical for verifying ground reports and assessing infrastructure damage in inaccessible areas.
+                                <br><br>
+                                <span class="inline-block bg-yellow-500/20 border border-yellow-500/40 text-yellow-200 font-medium px-3 py-1.5 rounded-lg">
+                                    <i class="fas fa-mouse-pointer mr-2"></i> Click the ‘Open Data’ button on the left-hand navigation menu on the website.
+                                </span>
+                            </p>
+                            
+                            <div class="bg-white/10 rounded-lg p-3 mb-6 backdrop-blur-sm border border-white/5">
+                                <strong class="block text-yellow-300 text-xs uppercase tracking-wider mb-2">Key Data:</strong>
+                                <ul class="space-y-1.5 text-xs text-slate-200">
+                                    <li class="flex items-center"><i class="fas fa-search-plus w-5 text-center text-orange-400 mr-2"></i> Zoomable HD Map</li>
+                                    <li class="flex items-center"><i class="fas fa-columns w-5 text-center text-yellow-400 mr-2"></i> Comparison with Pre-Event Imagery</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <a href="https://xpress.maxar.com/?lat=6.845231246279241&lon=80.06272864427858&zoom=11.3" target="_blank" class="w-full inline-flex items-center justify-center bg-yellow-600 hover:bg-yellow-500 text-white px-4 py-2.5 rounded-xl font-bold text-sm transition shadow-lg relative z-10 mt-auto focus:ring-2 focus:ring-yellow-400 focus:outline-none">
+                            Open Satellite Viewer <i class="fas fa-external-link-alt ml-2" aria-hidden="true"></i>
+                        </a>
+                    </article>
+
+                    <!-- Card 2: Copernicus EMS (Satellite Mapping) -->
+                    <article class="bg-gradient-to-br from-indigo-900 to-blue-900 dark:from-indigo-950 dark:to-blue-950 rounded-2xl p-6 md:p-8 text-white shadow-lg flex flex-col h-full relative overflow-hidden group hover:-translate-y-2 transition duration-300">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-500 rounded-full blur-3xl opacity-10 -mr-10 -mt-10 group-hover:opacity-20 transition duration-500"></div>
+                        
+                        <div class="relative z-10 flex-grow">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="bg-indigo-600/30 border border-indigo-400/30 text-indigo-200 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+                                    <i class="fas fa-satellite mr-1"></i> Rapid Mapping
+                                </div>
+                            </div>
+                            <h3 class="font-bold text-xl mb-2">Copernicus EMS</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                                Emergency Management Service providing rapid on-demand geospatial information. Access detailed grading and delineation maps for the current floods.
+                            </p>
+                            
+                            <div class="bg-white/10 rounded-lg p-3 mb-6 backdrop-blur-sm border border-white/5">
+                                <strong class="block text-indigo-300 text-xs uppercase tracking-wider mb-2">Key Data:</strong>
+                                <ul class="space-y-1.5 text-xs text-slate-200">
+                                    <li class="flex items-center"><i class="fas fa-layer-group w-5 text-center text-cyan-400 mr-2"></i> Flood Extent Vectors</li>
+                                    <li class="flex items-center"><i class="fas fa-search-location w-5 text-center text-blue-400 mr-2"></i> Damage Grading</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <a href="https://mapping.emergency.copernicus.eu/activations/EMSR851/" target="_blank" class="w-full inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl font-bold text-sm transition shadow-lg relative z-10 mt-auto focus:ring-2 focus:ring-indigo-400 focus:outline-none">
+                            View EMS Maps <i class="fas fa-external-link-alt ml-2" aria-hidden="true"></i>
+                        </a>
+                    </article>
+
+                    <!-- Card 3: European Space Agency -->
+                    <article class="bg-gradient-to-br from-slate-800 to-indigo-900 dark:from-slate-800 dark:to-indigo-950 rounded-2xl p-6 md:p-8 text-white shadow-lg flex flex-col h-full relative overflow-hidden group hover:-translate-y-2 transition duration-300">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-500 rounded-full blur-3xl opacity-10 -mr-10 -mt-10 group-hover:opacity-20 transition duration-500"></div>
+                        
+                        <div class="relative z-10 flex-grow">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="bg-indigo-600/30 border border-indigo-400/30 text-indigo-200 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+                                    <i class="fas fa-satellite mr-1"></i> European Space Agency (ESA)
+                                </div>
+                            </div>
+                            <h3 class="font-bold text-xl mb-2">European Space Agency</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                                High-resolution satellite imagery from the European Space Agency (ESA) capturing the extent of the flooding. Provides a critical macro-view of the disaster zone.
+                            </p>
+                            
+                            <div class="bg-white/10 rounded-lg p-3 mb-6 backdrop-blur-sm border border-white/5">
+                                <strong class="block text-indigo-300 text-xs uppercase tracking-wider mb-2">Key Data:</strong>
+                                <ul class="space-y-1.5 text-xs text-slate-200">
+                                    <li class="flex items-center"><i class="fas fa-images w-5 text-center text-cyan-400 mr-2"></i> Flood Extent Photos</li>
+                                    <li class="flex items-center"><i class="fas fa-layer-group w-5 text-center text-blue-400 mr-2"></i> False-colour imagery of flood spread</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <a href="https://www.esa.int/ESA_Multimedia/Images/2025/12/Flooding_in_Sri_Lanka" target="_blank" class="w-full inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2.5 rounded-xl font-bold text-sm transition shadow-lg relative z-10 mt-auto focus:ring-2 focus:ring-indigo-400 focus:outline-none">
+                            View Imagery <i class="fas fa-external-link-alt ml-2" aria-hidden="true"></i>
+                        </a>
+                    </article>
+
+                </div>
+
+                <!-- LIVE MAPS SECTION -->
+                <div class="border-t border-slate-200 dark:border-slate-800 pt-10">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide flex items-center">
+                                <i class="fas fa-ship mr-2" aria-hidden="true"></i> Updates by Sri Lanka Navy
+                            </div>
+                            <h3 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white">River Inundation Maps</h3>
+                        </div>
+                        <span class="text-xs font-medium text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-900 px-3 py-1 rounded-full border border-slate-200 dark:border-slate-800 flex items-center">
+                            <span class="inline-block w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse"></span>
+                            Continuously Updated
+                        </span>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Kelani Ganga Map -->
+                        <article class="bg-white dark:bg-slate-900 rounded-2xl p-1 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition duration-300">
+                            <!-- Hidden keyword span for search index -->
+                            <span class="hidden">River Inundation Maps Sri Lanka Navy Flood Warning</span>
+                            <div class="p-4 pb-2">
+                                <h4 class="font-bold text-slate-800 dark:text-white flex items-center justify-between">
+                                    <span class="flex items-center"><i class="fas fa-water text-blue-500 mr-2" aria-hidden="true"></i> Kelani Ganga Basin</span>
+                                </h4>
+                            </div>
+                            <div class="relative w-full h-80 md:h-96 bg-slate-100 dark:bg-slate-800 rounded-xl overflow-hidden">
+                                <iframe src="https://www.google.com/maps/d/embed?mid=1pvrgWQ0_bMeEGjg3-zQoeuVAvNgTJ6IA&ehbc=2E312F" width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" title="Kelani Ganga Inundation Map"></iframe>
+                            </div>
+                        </article>
+
+                        <!-- Kalu Ganga Map -->
+                        <article class="bg-white dark:bg-slate-900 rounded-2xl p-1 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition duration-300">
+                            <!-- Hidden keyword span for search index -->
+                            <span class="hidden">River Inundation Maps Sri Lanka Navy Flood Warning</span>
+                            <div class="p-4 pb-2">
+                                <h4 class="font-bold text-slate-800 dark:text-white flex items-center justify-between">
+                                    <span class="flex items-center"><i class="fas fa-water text-blue-500 mr-2" aria-hidden="true"></i> Kalu Ganga Basin</span>
+                                </h4>
+                            </div>
+                            <div class="relative w-full h-80 md:h-96 bg-slate-100 dark:bg-slate-800 rounded-xl overflow-hidden">
+                                <iframe src="https://www.google.com/maps/d/embed?mid=1K05XLu6lgwYFHgzPaJtgX00vpzizTYZQ&ehbc=2E312F" width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" title="Kalu Ganga Inundation Map"></iframe>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 3: Real-Time Response Tools -->
+            <section id="response-tools" class="scroll-mt-24">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                    <!-- Left Side: Icon & Title -->
+                    <div class="flex flex-col md:flex-row md:items-center gap-4">
+                        <div class="w-14 h-14 bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-300 rounded-2xl flex items-center justify-center text-3xl shadow-sm shrink-0">
+                            <i class="fas fa-people-carry-box" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">Real-Time Response Tools</h2>
+                            <p class="text-sm md:text-base text-slate-500 dark:text-slate-400 mt-1">Tools built by the community to coordinate immediate relief, rescue, and recovery.</p>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: Live Indicator -->
+                    <div class="flex items-center self-start md:self-center">
+                        <span class="inline-flex items-center px-3 py-1.5 rounded-full bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-xs font-bold uppercase tracking-wide border border-green-200 dark:border-green-800 shadow-sm transition-transform hover:scale-105 cursor-default">
+                            <span class="relative flex h-2.5 w-2.5 mr-2">
+                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                            </span>
+                            Continuously Updated
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Grid Layout for Real-Time Tools -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+
+                    <!-- Card 1: FloodSupport Ecosystem (Blue Theme) -->
+                    <article class="bg-gradient-to-br from-blue-900 to-slate-900 dark:from-blue-950 dark:to-black rounded-2xl text-white shadow-lg flex flex-col h-full relative overflow-hidden group ring-1 ring-blue-500/30 hover:ring-blue-500 transition-all hover:-translate-y-2 duration-300">
+                        <!-- Featured Badge -->
+                        <div class="absolute top-4 right-4 z-20">
+                            <span class="bg-blue-600 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider shadow-sm flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span> Key Resource
+                            </span>
+                        </div>
+
+                        <div class="absolute top-0 right-0 w-40 h-40 bg-blue-500 rounded-full blur-3xl opacity-10 -mr-10 -mt-10 group-hover:opacity-20 transition duration-500"></div>
+                        
+                        <div class="p-6 md:p-8 relative z-10 flex flex-col h-full">
+                            <!-- Header -->
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="bg-blue-600/30 border border-blue-400/30 text-blue-100 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+                                    <i class="fas fa-layer-group mr-1"></i> Integrated Platform
+                                </div>
+                            </div>
+                            <h3 class="font-bold text-2xl mb-2">FloodSupport.org</h3>
+                            <p class="text-blue-100 text-sm leading-relaxed mb-6">
+                                The <strong>primary citizen-led coordination platform.</strong> Comprehensive tool for both reporting needs and analyzing aggregate data.
+                            </p>
+
+                            <!-- Split Action Area -->
+                            <div class="space-y-4 mt-auto">
+                                
+                                <!-- 1. Main Portal Link -->
+                                <div class="bg-white/10 rounded-xl p-4 border border-white/10 hover:bg-white/20 transition group/item">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <strong class="text-blue-50 text-sm flex items-center"><i class="fas fa-bullhorn w-5 mr-2"></i> Main Portal</strong>
+                                        <span class="text-[10px] bg-blue-900/80 text-blue-100 px-2 py-0.5 rounded border border-blue-400/30">Action</span>
+                                    </div>
+                                    <p class="text-xs text-blue-200 mb-3">Submit SOS requests, report missing persons, and offer help.</p>
+                                    <a href="https://floodsupport.org" target="_blank" class="w-full inline-flex items-center justify-center bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg font-bold text-xs transition shadow-md focus:ring-2 focus:ring-blue-400 focus:outline-none mb-3">
+                                        Open Main Site <i class="fas fa-external-link-alt ml-2" aria-hidden="true"></i>
+                                    </a>
+                                    <div class="text-[10px] text-blue-300 border-t border-white/10 pt-2 flex items-center gap-2">
+                                        <span>Dev by:</span>
+                                        <a href="https://www.linkedin.com/in/rangadayawansha/" target="_blank" class="text-white hover:text-blue-200 hover:underline inline-flex items-center gap-1">Ranga Dayawansha <i class="fab fa-linkedin text-xs"></i></a>
+                                    </div>
+                                </div>
+
+                                <!-- 2. Stats Dashboard Link -->
+                                <div class="bg-white/10 rounded-xl p-4 border border-white/10 hover:bg-white/20 transition group/item">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <strong class="text-purple-100 text-sm flex items-center"><i class="fas fa-chart-pie w-5 mr-2"></i> Analytics Hub</strong>
+                                        <span class="text-[10px] bg-purple-900/80 text-purple-100 px-2 py-0.5 rounded border border-purple-400/30">Data</span>
+                                    </div>
+                                    <p class="text-xs text-blue-200 mb-3">View urgency charts, status logs, and district-level statistics.</p>
+                                    <a href="https://stats.floodsupport.org/" target="_blank" class="w-full inline-flex items-center justify-center bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-lg font-bold text-xs transition shadow-md focus:ring-2 focus:ring-purple-400 focus:outline-none mb-3">
+                                        View Statistics <i class="fas fa-chart-bar ml-2" aria-hidden="true"></i>
+                                    </a>
+                                    <div class="text-[10px] text-blue-300 border-t border-white/10 pt-2 flex flex-wrap gap-1 items-center">
+                                        <span>Dev by:</span>
+                                        <a href="https://www.linkedin.com/in/prabath-wijethilaka-4950b220b/" target="_blank" class="text-white hover:text-blue-200 hover:underline inline-flex items-center gap-1">Prabath <i class="fab fa-linkedin text-[9px]"></i></a> & 
+                                        <a href="https://www.linkedin.com/in/yasirubasnayake/" target="_blank" class="text-white hover:text-blue-200 hover:underline inline-flex items-center gap-1">Yasiru <i class="fab fa-linkedin text-[9px]"></i></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card 2: Flood Infra Impact (Green Theme) -->
+                    <article class="bg-gradient-to-br from-green-900 to-slate-900 dark:from-green-950 dark:to-black rounded-2xl p-6 md:p-8 text-white shadow-lg flex flex-col h-full relative overflow-hidden group ring-1 ring-green-500/30 hover:ring-green-500 transition-all hover:-translate-y-2 duration-300">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-green-500 rounded-full blur-3xl opacity-10 -mr-10 -mt-10 group-hover:opacity-20 transition duration-500"></div>
+                        
+                        <div class="relative z-10 flex-grow">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="bg-green-600/30 border border-green-400/30 text-green-100 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+                                    <i class="fas fa-map-marked-alt mr-1"></i> Visual Mapping
+                                </div>
+                            </div>
+                            <h3 class="font-bold text-xl mb-2">Flood Infra Impact</h3>
+                            <p class="text-green-100 text-sm leading-relaxed mb-6">
+                                <strong>Infrastructure Damage Tracker.</strong> Map-based incident reporting visualizing the geographic spread of the disaster via user pins.
+                                <br><br>
+                                Developed by 
+                                <a href="https://www.linkedin.com/in/sahan-wanniarachchi-84963814b/" target="_blank" class="text-green-300 hover:text-white font-semibold hover:underline inline-flex items-center gap-1">Sahan Wanniarachchi <i class="fab fa-linkedin text-xs"></i></a> 
+                                and 
+                                <a href="https://www.linkedin.com/in/nesha-ranaweera-2a7168190/" target="_blank" class="text-green-300 hover:text-white font-semibold hover:underline inline-flex items-center gap-1">Nesha Ranaweera <i class="fab fa-linkedin text-xs"></i></a>.
+                            </p>
+                            
+                            <div class="bg-white/10 rounded-lg p-3 mb-6 backdrop-blur-sm border border-white/5">
+                                <strong class="block text-green-200 text-xs uppercase tracking-wider mb-2">Key Metrics:</strong>
+                                <ul class="space-y-1.5 text-xs text-green-50">
+                                    <li class="flex items-center"><i class="fas fa-layer-group w-5 text-center text-amber-400 mr-2"></i> Filtering System with Heatmap</li>
+                                    <li class="flex items-center"><i class="fas fa-chart-line w-5 text-center text-purple-400 mr-2"></i> Live Updated Dashboard</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="mt-auto grid grid-cols-1 sm:grid-cols-2 gap-3 relative z-10">
+                            <a href="https://flood-impact-spot-lk.web.app/" target="_blank" class="w-full inline-flex items-center justify-center bg-green-600 hover:bg-green-500 text-white px-4 py-2.5 rounded-xl font-bold text-xs transition shadow-lg focus:ring-2 focus:ring-green-400 focus:outline-none text-center">
+                                Web App <i class="fas fa-external-link-alt ml-2"></i>
+                            </a>
+                            <a href="https://lookerstudio.google.com/u/0/reporting/b254c1c9-8e03-40ef-a769-e027278896b4/page/p_vss1444kld" target="_blank" class="w-full inline-flex items-center justify-center bg-slate-800 hover:bg-slate-700 text-white px-4 py-2.5 rounded-xl font-bold text-xs transition shadow-lg border border-slate-600 focus:ring-2 focus:ring-slate-400 focus:outline-none text-center">
+                                Dashboard <i class="fas fa-chart-bar ml-2"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Card 3: Rebuild SL Metro (Amber Theme) -->
+                    <article class="bg-gradient-to-br from-amber-900 to-slate-900 dark:from-amber-950 dark:to-black rounded-2xl p-6 md:p-8 text-white shadow-lg flex flex-col h-full relative overflow-hidden group ring-1 ring-amber-500/30 hover:ring-amber-500 transition-all hover:-translate-y-2 duration-300">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-amber-500 rounded-full blur-3xl opacity-10 -mr-10 -mt-10 group-hover:opacity-20 transition duration-500"></div>
+                        
+                        <div class="relative z-10 flex-grow">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="bg-amber-600/30 border border-amber-400/30 text-amber-100 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+                                    <i class="fas fa-tools mr-1"></i> Reconstruction
+                                </div>
+                            </div>
+                            <h3 class="font-bold text-xl mb-2">Rebuild SL Metro</h3>
+                            <p class="text-amber-100 text-sm leading-relaxed mb-6">
+                                <strong>Post-disaster recovery platform.</strong> Focuses on coordinating cleanup and infrastructure rebuilding efforts in the metro area.
+                                <br><br>
+                                Developed by <a href="https://web.facebook.com/profile.php?id=61584770180348" target="_blank" class="text-amber-300 hover:text-white font-semibold hover:underline inline-flex items-center gap-1">Team Metro Minds <i class="fab fa-facebook text-xs"></i></a>, Urban Informatics & Planning Dept., UOM.
+                            </p>
+                            
+                            <div class="bg-white/10 rounded-xl p-4 mb-6 backdrop-blur-sm border border-white/5">
+                                <strong class="block text-amber-200 text-xs uppercase tracking-wider mb-3">How This Platform Helps:</strong>
+                                <ul class="space-y-3 text-xs text-amber-50">
+                                    <li>
+                                        <strong class="text-orange-200 block mb-1"><i class="fas fa-bolt w-4 text-center mr-1"></i> Accelerated Assessment</strong>
+                                        Citizens directly report damage with photos/location, creating a real-time comprehensive picture.
+                                    </li>
+                                    <li>
+                                        <strong class="text-orange-200 block mb-1"><i class="fas fa-coins w-4 text-center mr-1"></i> Data-Driven Funding</strong>
+                                        Aggregates damage by GND to ensure resources go to the most affected areas based on actual data.
+                                    </li>
+                                    <li>
+                                        <strong class="text-orange-200 block mb-1"><i class="fas fa-chart-line w-4 text-center mr-1"></i> Faster Decisions</strong>
+                                        Clear visualizations allow government/NGO leaders to identify priority areas instantly.
+                                    </li>
+                                    <li>
+                                        <strong class="text-orange-200 block mb-1"><i class="fas fa-users w-4 text-center mr-1"></i> Community Collaboration</strong>
+                                        Connects NGOs, volunteers, and communities to ensure coordinated relief.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <a href="https://rebuild-sl-metro.vercel.app/" target="_blank" class="w-full inline-flex items-center justify-center bg-amber-700 hover:bg-amber-600 text-white px-4 py-2.5 rounded-xl font-bold text-sm transition shadow-lg relative z-10 mt-auto focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                            View Recovery App <i class="fas fa-external-link-alt ml-2" aria-hidden="true"></i>
+                        </a>
+                    </article>
+
+                    <!-- Card 4: AgriFlow (Emerald Theme) -->
+                    <article class="bg-gradient-to-br from-emerald-900 to-slate-900 dark:from-emerald-950 dark:to-slate-950 rounded-2xl p-6 md:p-8 text-white shadow-lg flex flex-col h-full relative overflow-hidden group ring-1 ring-emerald-500/30 hover:ring-emerald-500 transition-all hover:-translate-y-2 duration-300">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500 rounded-full blur-3xl opacity-10 -mr-10 -mt-10 group-hover:opacity-20 transition duration-500"></div>
+                        
+                        <div class="relative z-10 flex-grow">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="bg-emerald-600/30 border border-emerald-400/30 text-emerald-100 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+                                    <i class="fas fa-seedling mr-1"></i> Food Security
+                                </div>
+                            </div>
+                            <h3 class="font-bold text-xl mb-2">AgriFlow</h3>
+                            <p class="text-emerald-100 text-sm leading-relaxed mb-6">
+                                A <strong>centralized system</strong> to prevent agricultural waste by connecting farmers with market demand. Predicts supply gaps 3 months in advance.
+                                <br><br>
+                                Developed by <a href="https://www.linkedin.com/in/chamod-wismantha-senevirathna/" target="_blank" class="text-emerald-300 hover:text-white font-semibold hover:underline inline-flex items-center gap-1">Chamod Wismantha <i class="fab fa-linkedin text-xs"></i></a>, Undergraduate, Urban Informatics & Planning Dept., UOM.
+                            </p>
+                            
+                            <div class="bg-white/10 rounded-xl p-4 mb-6 backdrop-blur-sm border border-white/5">
+                                <strong class="block text-emerald-200 text-xs uppercase tracking-wider mb-3">How This Platform Helps:</strong>
+                                <ul class="space-y-3 text-xs text-emerald-50">
+                                    <li>
+                                        <strong class="text-emerald-200 block mb-1"><i class="fas fa-chart-line w-4 text-center mr-1"></i> Demand Prediction</strong>
+                                        Predicts market needs 3 months ahead to recommend optimal crops.
+                                    </li>
+                                    <li>
+                                        <strong class="text-emerald-200 block mb-1"><i class="fas fa-store w-4 text-center mr-1"></i> Farmers' Marketplace</strong>
+                                        Connects farmers directly with buyers, eliminating middlemen.
+                                    </li>
+                                    <li>
+                                        <strong class="text-emerald-200 block mb-1"><i class="fas fa-truck-loading w-4 text-center mr-1"></i> Supply Management</strong>
+                                        Real-time monitoring of shortages or oversupply at economic centers.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <a href="https://slagri.netlify.app" target="_blank" class="w-full inline-flex items-center justify-center bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-xl font-bold text-sm transition shadow-lg relative z-10 mt-auto focus:ring-2 focus:ring-emerald-400 focus:outline-none">
+                            Visit Platform <i class="fas fa-external-link-alt ml-2" aria-hidden="true"></i>
+                        </a>
+                    </article>
+
+                    <!-- Card 5: Missing Persons Reporting Platform (Teal Theme) -->
+                    <article class="bg-gradient-to-br from-teal-900 to-slate-900 dark:from-teal-950 dark:to-slate-950 rounded-2xl p-6 md:p-8 text-white shadow-lg flex flex-col h-full relative overflow-hidden group ring-1 ring-teal-500/30 hover:ring-teal-500 transition-all hover:-translate-y-2 duration-300">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-teal-500 rounded-full blur-3xl opacity-10 -mr-10 -mt-10 group-hover:opacity-20 transition duration-500"></div>
+                        
+                        <div class="relative z-10 flex-grow">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="bg-teal-600/30 border border-teal-400/30 text-teal-100 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+                                    <i class="fas fa-university mr-1"></i> University Initiative
+                                </div>
+                            </div>
+                            <h3 class="font-bold text-xl mb-2">Missing Persons Reporting Platform</h3>
+                            <p class="text-teal-100 text-sm leading-relaxed mb-6">
+                                <strong>Relief coordination platform</strong> by the Students' Union, Faculty of Engineering, USJ. Primarily serves as a central database for finding missing persons.
+                                <br><br>
+                                Developed by <span class="text-teal-300 font-semibold">Students' Union, Faculty of Engineering, USJ</span>.
+                            </p>
+                            
+                            <div class="bg-white/10 rounded-lg p-3 mb-6 backdrop-blur-sm border border-white/5">
+                                <strong class="block text-teal-200 text-xs uppercase tracking-wider mb-2">Key Data:</strong>
+                                <ul class="space-y-1.5 text-xs text-teal-50">
+                                    <li class="flex items-center"><i class="fas fa-users-viewfinder w-5 text-center text-pink-400 mr-2"></i> Missing Persons Registry</li>
+                                    <li class="flex items-center"><i class="fas fa-shield-alt w-5 text-center text-teal-400 mr-2"></i> Safety Center Details</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <a href="https://disaster.sufoeusj.org/" target="_blank" class="w-full inline-flex items-center justify-center bg-teal-600 hover:bg-teal-500 text-white px-4 py-2.5 rounded-xl font-bold text-sm transition shadow-lg relative z-10 mt-auto focus:ring-2 focus:ring-teal-400 focus:outline-none">
+                            Find Missing Persons <i class="fas fa-external-link-alt ml-2" aria-hidden="true"></i>
+                        </a>
+                    </article>
+
+                    <!-- Card 6: Arunalla (Orange Theme) -->
+                    <article class="bg-gradient-to-br from-orange-900 to-slate-900 dark:from-orange-950 dark:to-slate-950 rounded-2xl p-6 md:p-8 text-white shadow-lg flex flex-col h-full relative overflow-hidden group ring-1 ring-orange-500/30 hover:ring-orange-500 transition-all hover:-translate-y-2 duration-300">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-orange-500 rounded-full blur-3xl opacity-10 -mr-10 -mt-10 group-hover:opacity-20 transition duration-500"></div>
+                        
+                        <div class="relative z-10 flex-grow">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="bg-orange-600/30 border border-orange-400/30 text-orange-100 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+                                    <i class="fas fa-graduation-cap mr-1"></i> Education Support
+                                </div>
+                            </div>
+                            <h3 class="font-bold text-xl mb-2">Arunalla</h3>
+                            <p class="text-orange-100 text-sm leading-relaxed mb-6">
+                                <strong>Education Support</strong> for Flood-Affected Students. This tool helps identify students affected by the 2025 Sri Lanka floods who need exam support.
+                                <br><br>
+                                Developed by 
+                                <a href="https://www.linkedin.com/in/wikum-sanjith-ranaweera-2b61b221b/" target="_blank" class="text-orange-300 hover:text-white font-semibold hover:underline inline-flex items-center gap-1">Wikum Sanjith Ranaweera <i class="fab fa-linkedin text-xs"></i></a>, 
+                                <a href="https://www.linkedin.com/in/mudipa-kishan/" target="_blank" class="text-orange-300 hover:text-white font-semibold hover:underline inline-flex items-center gap-1">Mudipa Kishan <i class="fab fa-linkedin text-xs"></i></a>, and 
+                                <a href="https://www.linkedin.com/in/dewmal/" target="_blank" class="text-orange-300 hover:text-white font-semibold hover:underline inline-flex items-center gap-1">Dewmal Handapangoda <i class="fab fa-linkedin text-xs"></i></a>.
+                            </p>
+                            
+                            <div class="bg-white/10 rounded-lg p-3 mb-6 backdrop-blur-sm border border-white/5">
+                                <strong class="block text-orange-200 text-xs uppercase tracking-wider mb-2">Key Services:</strong>
+                                <ul class="space-y-1.5 text-xs text-orange-50">
+                                    <li class="flex items-center"><i class="fas fa-book-reader w-5 text-center text-yellow-400 mr-2"></i> Exam Material Support</li>
+                                    <li class="flex items-center"><i class="fas fa-hands-helping w-5 text-center text-orange-400 mr-2"></i> Student-Mentor Connection</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <a href="https://arunalla.help/" target="_blank" class="w-full inline-flex items-center justify-center bg-orange-600 hover:bg-orange-500 text-white px-4 py-2.5 rounded-xl font-bold text-sm transition shadow-lg relative z-10 mt-auto focus:ring-2 focus:ring-orange-400 focus:outline-none">
+                            Visit Platform <i class="fas fa-external-link-alt ml-2" aria-hidden="true"></i>
+                        </a>
+                    </article>
+
+                    <!-- Card 7: Rivernet (Cyan Theme) -->
+                    <article class="bg-gradient-to-br from-cyan-900 to-slate-900 dark:from-cyan-950 dark:to-slate-950 rounded-2xl p-6 md:p-8 text-white shadow-lg flex flex-col h-full relative overflow-hidden group ring-1 ring-cyan-500/30 hover:ring-cyan-500 transition-all hover:-translate-y-2 duration-300">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-500 rounded-full blur-3xl opacity-10 -mr-10 -mt-10 group-hover:opacity-20 transition duration-500"></div>
+                        
+                        <div class="relative z-10 flex-grow">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="bg-cyan-600/30 border border-cyan-400/30 text-cyan-100 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+                                    <i class="fas fa-water mr-1"></i> Flood Alerts
+                                </div>
+                            </div>
+                            <h3 class="font-bold text-xl mb-2">RIVERNET.LK</h3>
+                            <p class="text-cyan-100 text-sm leading-relaxed mb-6">
+                                <strong>Real-time river level monitoring</strong> and flood early warning system for Sri Lanka. Get instant alerts for Kelani, Kalu Ganga, and all major river basins.
+                            </p>
+                            
+                            <div class="bg-white/10 rounded-lg p-3 mb-6 backdrop-blur-sm border border-white/5">
+                                <strong class="block text-cyan-200 text-xs uppercase tracking-wider mb-2">Key Features:</strong>
+                                <ul class="space-y-1.5 text-xs text-cyan-50">
+                                    <li class="flex items-center"><i class="fas fa-ruler-vertical w-5 text-center text-yellow-400 mr-2"></i> Live Water Levels</li>
+                                    <li class="flex items-center"><i class="fas fa-bell w-5 text-center text-red-400 mr-2"></i> Instant Alerts</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <a href="https://rivernet.lk" target="_blank" class="w-full inline-flex items-center justify-center bg-cyan-600 hover:bg-cyan-500 text-white px-4 py-2.5 rounded-xl font-bold text-sm transition shadow-lg relative z-10 mt-auto focus:ring-2 focus:ring-cyan-400 focus:outline-none">
+                            Visit Rivernet <i class="fas fa-external-link-alt ml-2" aria-hidden="true"></i>
+                        </a>
+                    </article>
+
+                    <!-- Card 8: Lanka Rescue - Tourist Safety (NEW) -->
+                    <article class="bg-gradient-to-br from-teal-900 to-cyan-900 dark:from-teal-950 dark:to-cyan-950 rounded-2xl p-6 md:p-8 text-white shadow-lg flex flex-col h-full relative overflow-hidden group ring-1 ring-teal-500/30 hover:ring-teal-500 transition-all hover:-translate-y-2 duration-300">
+                        <!-- Featured Badge -->
+                        <div class="absolute top-4 right-4 z-20">
+                            <span class="bg-yellow-500 text-slate-900 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider shadow-sm flex items-center gap-1">
+                                <i class="fas fa-passport w-3 text-center"></i> Tourist Alert
+                            </span>
+                        </div>
+
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-teal-500 rounded-full blur-3xl opacity-10 -mr-10 -mt-10 group-hover:opacity-20 transition duration-500"></div>
+                        
+                        <div class="relative z-10 flex-grow">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="bg-teal-600/30 border border-teal-400/30 text-teal-100 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+                                    <i class="fas fa-plane-departure mr-1"></i> Tourist Safety
+                                </div>
+                            </div>
+                            <h3 class="font-bold text-xl mb-2">Lanka Rescue - Tourist Assistance</h3>
+                            <p class="text-teal-100 text-sm leading-relaxed mb-6">
+                                <strong>Dedicated support for tourists</strong> affected by the disaster. Provides emergency assistance, evacuation coordination, embassy contacts, and safe zone information for international visitors.
+                                <br><br>
+                                A critical resource ensuring the safety and wellbeing of foreign nationals during the crisis.
+                            </p>
+                            
+                            <div class="bg-white/10 rounded-lg p-3 mb-6 backdrop-blur-sm border border-white/5">
+                                <strong class="block text-teal-200 text-xs uppercase tracking-wider mb-2">Key Services:</strong>
+                                <ul class="space-y-1.5 text-xs text-teal-50">
+                                    <li class="flex items-center"><i class="fas fa-ambulance w-5 text-center text-red-400 mr-2"></i> Emergency Evacuation</li>
+                                    <li class="flex items-center"><i class="fas fa-building w-5 text-center text-blue-400 mr-2"></i> Embassy Coordination</li>
+                                    <li class="flex items-center"><i class="fas fa-shield-alt w-5 text-center text-green-400 mr-2"></i> Safe Zone Locations</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <a href="https://lankarescue.org/tourist" target="_blank" class="w-full inline-flex items-center justify-center bg-teal-600 hover:bg-teal-500 text-white px-4 py-2.5 rounded-xl font-bold text-sm transition shadow-lg relative z-10 mt-auto focus:ring-2 focus:ring-teal-400 focus:outline-none">
+                            Access Tourist Support <i class="fas fa-external-link-alt ml-2" aria-hidden="true"></i>
+                        </a>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- SECTION 4: Crisis Management -->
+            <section id="management" class="scroll-mt-24 space-y-16">
+                
+                <div class="flex flex-col md:flex-row md:items-center gap-4 mb-10">
+                    <div class="w-16 h-16 bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-300 rounded-2xl flex items-center justify-center text-3xl shadow-sm shrink-0">
+                        <i class="fas fa-bullhorn" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">Crisis Management & Statistics</h2>
+                        <p class="text-sm md:text-base text-slate-500 dark:text-slate-400 mt-1">Official government statistics, situation reports, and operational commands.</p>
+                    </div>
+                </div>
+
+                <!-- Sub-Topic 01: Response & Coordination -->
+                <div>
+                    <div class="flex items-center gap-3 mb-8 border-l-4 border-slate-400 dark:border-slate-600 pl-4">
+                        <h3 class="text-xl font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wide">Response & Coordination</h3>
+                        <div class="h-px bg-slate-200 dark:bg-slate-800 flex-grow ml-4"></div>
+                    </div>
+
+                    <div class="space-y-8">
+                        <!-- Item 1: DMC -->
+                        <article class="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:shadow-lg transition-shadow duration-300">
+                            <div class="absolute top-0 left-0 w-2 h-full bg-red-600"></div>
+                            <div class="flex flex-col md:flex-row gap-8 items-start">
+                                <div class="w-16 h-16 bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-300 rounded-2xl flex items-center justify-center text-3xl shadow-sm shrink-0">
+                                    <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                                </div>
+                                <div class="flex-grow">
+                                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                                        <div>
+                                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">Disaster Management Centre (DMC)</h3>
+                                            <span class="inline-block px-3 py-1 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded-full text-xs font-bold uppercase tracking-wide">
+                                                National Authority
+                                            </span>
+                                        </div>
+                                        <a href="http://www.dmc.gov.lk/" target="_blank" class="inline-flex items-center justify-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white text-sm font-bold rounded-xl transition shadow-lg hover:shadow-red-500/30 active:scale-95 focus:ring-4 focus:ring-red-200 dark:focus:ring-red-900 outline-none">
+                                            Visit DMC Portal <i class="fas fa-external-link-alt ml-2" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+                                        The central coordinating body for all disaster management activities in Sri Lanka. Responsible for issuing national alerts, coordinating between agencies, and producing the daily "Situation Report" (SitRep).
+                                    </p>
+                                    
+                                    <!-- Consolidated Key Data -->
+                                    <div class="bg-slate-50 dark:bg-white/5 p-5 rounded-xl border border-slate-100 dark:border-slate-700">
+                                        <strong class="block text-slate-500 dark:text-slate-400 text-xs uppercase font-bold mb-3 tracking-wider">Key Data</strong>
+                                        <ul class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm font-semibold text-slate-800 dark:text-white">
+                                            <li class="flex items-center"><i class="fas fa-file-medical-alt text-red-500 mr-2" aria-hidden="true"></i> Situation Reports</li>
+                                            <li class="flex items-center"><i class="fas fa-users text-red-500 mr-2" aria-hidden="true"></i> IDP & Casualty Counts</li>
+                                            <li class="flex items-center"><i class="fas fa-campground text-red-500 mr-2" aria-hidden="true"></i> Safety Centers</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Item 2: Tri-Forces -->
+                        <article class="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:shadow-lg transition-shadow duration-300 mt-8">
+                            <div class="absolute top-0 left-0 w-2 h-full bg-blue-600"></div>
+                            <div class="flex flex-col md:flex-row gap-8 items-start">
+                                <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-300 rounded-2xl flex items-center justify-center text-3xl shadow-sm shrink-0">
+                                    <i class="fas fa-ship" aria-hidden="true"></i>
+                                </div>
+                                <div class="flex-grow">
+                                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                                        <div>
+                                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">Tri-Forces Operations</h3>
+                                            <span class="inline-block px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-bold uppercase tracking-wide">
+                                                Operational Wing
+                                            </span>
+                                        </div>
+                                        <a href="https://floodms.navy.lk/" target="_blank" class="inline-flex items-center justify-center px-6 py-3 bg-blue-700 hover:bg-blue-800 text-white text-sm font-bold rounded-xl transition shadow-lg hover:shadow-blue-500/30 active:scale-95 focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 outline-none">
+                                            Visit Navy Portal <i class="fas fa-external-link-alt ml-2" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+                                        The combined operational arm of the Army, Navy, and Air Force. They execute ground-level rescue missions, manage logistics in inaccessible areas, and provide air support for relief distribution.
+                                    </p>
+                                    
+                                    <!-- Consolidated Key Data -->
+                                    <div class="bg-slate-50 dark:bg-white/5 p-5 rounded-xl border border-slate-100 dark:border-slate-700">
+                                        <strong class="block text-slate-500 dark:text-slate-400 text-xs uppercase font-bold mb-3 tracking-wider">Key Data</strong>
+                                        <ul class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm font-semibold text-slate-800 dark:text-white">
+                                            <li class="flex items-center"><i class="fas fa-life-ring text-blue-600 dark:text-blue-400 mr-2" aria-hidden="true"></i> Rescue Logs</li>
+                                            <li class="flex items-center"><i class="fas fa-helicopter text-blue-600 dark:text-blue-400 mr-2" aria-hidden="true"></i> Aerial Surveillance</li>
+                                            <li class="flex items-center"><i class="fas fa-road text-blue-600 dark:text-blue-400 mr-2" aria-hidden="true"></i> Access Reports</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- Sub-Topic 02: Financial Relief & Support -->
+                <div>
+                    <div class="flex items-center gap-3 mb-8 border-l-4 border-green-500 pl-4">
+                        <h3 class="text-xl font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wide">Financial Relief & Support</h3>
+                        <div class="h-px bg-slate-200 dark:bg-slate-800 flex-grow ml-4"></div>
+                    </div>
+
+                    <div class="space-y-8">
+                        <!-- Item 1: Treasury -->
+                        <article class="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:shadow-lg transition-shadow duration-300">
+                            <!-- Hidden Keywords for Search -->
+                            <span class="hidden">Donation Financial Relief Support Money Grants Gov</span>
+                            
+                            <div class="absolute top-0 left-0 w-2 h-full bg-green-600"></div>
+                            <div class="flex flex-col md:flex-row gap-8 items-start">
+                                <div class="w-16 h-16 bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-300 rounded-2xl flex items-center justify-center text-3xl shadow-sm shrink-0">
+                                    <i class="fas fa-coins" aria-hidden="true"></i>
+                                </div>
+                                <div class="flex-grow">
+                                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                                        <div>
+                                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">Treasury Disaster Relief</h3>
+                                            <span class="inline-block px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-xs font-bold uppercase tracking-wide">
+                                                Official Funding
+                                            </span>
+                                        </div>
+                                        <a href="https://govpay.lk/en/disaster-relief" target="_blank" class="inline-flex items-center justify-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white text-sm font-bold rounded-xl transition shadow-lg hover:shadow-green-500/30 active:scale-95 focus:ring-4 focus:ring-green-200 dark:focus:ring-green-900 outline-none">
+                                            Visit GovPay <i class="fas fa-external-link-alt ml-2" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+                                        The official government channel for monetary aid and funding. Manages the national disaster relief funds, tracks donations, and issues circulars regarding financial aid distribution.
+                                    </p>
+                                    
+                                    <!-- Consolidated Key Data -->
+                                    <div class="bg-slate-50 dark:bg-white/5 p-5 rounded-xl border border-slate-100 dark:border-slate-700">
+                                        <strong class="block text-slate-500 dark:text-slate-400 text-xs uppercase font-bold mb-3 tracking-wider">Key Data</strong>
+                                        <ul class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm font-semibold text-slate-800 dark:text-white">
+                                            <li class="flex items-center"><i class="fas fa-landmark text-green-500 mr-2" aria-hidden="true"></i> Relief Fund Accounts</li>
+                                            <li class="flex items-center"><i class="fas fa-credit-card text-green-500 mr-2" aria-hidden="true"></i> Donation Gateways</li>
+                                            <li class="flex items-center"><i class="fas fa-file-invoice-dollar text-green-500 mr-2" aria-hidden="true"></i> Aid Circulars</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Item 2: Give.Asia Fundraising -->
+                        <article class="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:shadow-lg transition-shadow duration-300">
+                            <!-- Hidden Keywords for Search -->
+                            <span class="hidden">Donation Financial Relief Support Money Crowdfunding Charity</span>
+
+                            <div class="absolute top-0 left-0 w-2 h-full bg-pink-600"></div>
+                            <div class="flex flex-col md:flex-row gap-8 items-start">
+                                <div class="w-16 h-16 bg-pink-100 dark:bg-pink-900/50 text-pink-600 dark:text-pink-300 rounded-2xl flex items-center justify-center text-3xl shadow-sm shrink-0">
+                                    <i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
+                                </div>
+                                <div class="flex-grow">
+                                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                                        <div>
+                                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">Give.Asia Fundraising</h3>
+                                            <span class="inline-block px-3 py-1 bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 rounded-full text-xs font-bold uppercase tracking-wide">
+                                                International Crowdfunding
+                                            </span>
+                                        </div>
+                                        <a href="https://give.asia/campaign/help-sri-lanka-sri-lanka-flood-crisis-november-2025?ee=XSlMsqHwxTD4ZVbV8eb0ccjS9vYfMXtG&utm_source=link_copy&utm_medium=share_button&utm_campaign=&utm_content=charity#/story" target="_blank" class="inline-flex items-center justify-center px-6 py-3 bg-pink-600 hover:bg-pink-700 text-white text-sm font-bold rounded-xl transition shadow-lg hover:shadow-pink-500/30 active:scale-95 focus:ring-4 focus:ring-pink-200 dark:focus:ring-pink-900 outline-none">
+                                            Donate Now <i class="fas fa-heart ml-2" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+                                        A verified international fundraising campaign dedicated to the Sri Lanka flood crisis. Funds collected are directly utilized to provide essential relief items such as dry rations, clean water, and hygiene kits to the most vulnerable communities.
+                                    </p>
+
+
+                                    
+                                    <!-- Consolidated Key Features -->
+                                    <div class="bg-slate-50 dark:bg-white/5 p-5 rounded-xl border border-slate-100 dark:border-slate-700">
+                                        <strong class="block text-slate-500 dark:text-slate-400 text-xs uppercase font-bold mb-3 tracking-wider">Key Features</strong>
+                                        <ul class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm font-semibold text-slate-800 dark:text-white">
+                                            <li class="flex items-center"><i class="fas fa-check-circle text-pink-500 mr-2" aria-hidden="true"></i> Verified Campaign</li>
+                                            <li class="flex items-center"><i class="fas fa-globe-americas text-pink-500 mr-2" aria-hidden="true"></i> Global Support</li>
+                                            <li class="flex items-center"><i class="fas fa-chart-line text-pink-500 mr-2" aria-hidden="true"></i> Transparent Tracking</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+
+
+<!-- Item 3: GoFundMe - Heal Sri Lanka -->
+                        <article class="bg-white dark:bg-slate-900 rounded-3xl p-8 border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:shadow-lg transition-shadow duration-300">
+                            <!-- Hidden Keywords for Search -->
+                            <span class="hidden">Donation Financial Relief Support Money Crowdfunding Charity GoFundMe Heal Sri Lanka</span>
+
+                            <div class="absolute top-0 left-0 w-2 h-full bg-emerald-600"></div>
+                            <div class="flex flex-col md:flex-row gap-8 items-start">
+                                <div class="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-300 rounded-2xl flex items-center justify-center text-3xl shadow-sm shrink-0">
+                                    <i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
+                                </div>
+                                <div class="flex-grow">
+                                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                                        <div>
+                                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">GoFundMe - Heal Sri Lanka</h3>
+                                            <span class="inline-block px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 rounded-full text-xs font-bold uppercase tracking-wide">
+                                                Global Crowdfunding
+                                            </span>
+                                        </div>
+                                        <a href="https://www.gofundme.com/f/heal-srilanka?attribution_id=sl:39677ea4-39c2-4dda-b760-01b18b3359b3&lang=en_US&ts=1764744566&utm_campaign=fp_sharesheet&utm_content=amp17_ta&utm_medium=customer&utm_source=copy_link" target="_blank" class="inline-flex items-center justify-center px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold rounded-xl transition shadow-lg hover:shadow-emerald-500/30 active:scale-95 focus:ring-4 focus:ring-emerald-200 dark:focus:ring-emerald-900 outline-none">
+                                            Donate Now <i class="fas fa-heart ml-2" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+                                        <strong>Heal Sri Lanka</strong> - A global GoFundMe campaign mobilizing international support for flood victims. Funds are allocated to provide emergency relief supplies, medical aid, temporary shelter, and rehabilitation assistance to affected communities across Sri Lanka.
+                                    </p>
+                                    
+                                    <!-- Consolidated Key Features -->
+                                    <div class="bg-slate-50 dark:bg-white/5 p-5 rounded-xl border border-slate-100 dark:border-slate-700">
+                                        <strong class="block text-slate-500 dark:text-slate-400 text-xs uppercase font-bold mb-3 tracking-wider">Key Features</strong>
+                                        <ul class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm font-semibold text-slate-800 dark:text-white">
+                                            <li class="flex items-center"><i class="fas fa-globe text-emerald-500 mr-2" aria-hidden="true"></i> Worldwide Reach</li>
+                                            <li class="flex items-center"><i class="fas fa-hand-holding-usd text-emerald-500 mr-2" aria-hidden="true"></i> Secure Donations</li>
+                                            <li class="flex items-center"><i class="fas fa-users text-emerald-500 mr-2" aria-hidden="true"></i> Community Backed</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SECTION 6: International & Humanitarian -->
+            <section id="humanitarian" class="scroll-mt-24">
+                <div class="flex flex-col md:flex-row md:items-center gap-4 mb-8">
+                    <div class="w-14 h-14 bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-300 rounded-2xl flex items-center justify-center text-3xl shadow-sm shrink-0">
+                        <i class="fas fa-globe-asia" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">International & Humanitarian Data</h2>
+                        <p class="text-sm md:text-base text-slate-500 dark:text-slate-400 mt-1">Reports from UN agencies and NGOs regarding human impact.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- ReliefWeb -->
+                    <article class="bg-white dark:bg-slate-900 rounded-2xl p-6 md:p-8 border border-slate-200 dark:border-slate-800 border-t-4 border-t-purple-600 resource-card transition duration-300 flex flex-col h-full hover:shadow-xl hover:shadow-purple-600/10 group focus-within:ring-2 focus-within:ring-purple-600">
+                        <div class="flex-grow">
+                            <div class="bg-purple-50 dark:bg-purple-900/40 text-purple-700 dark:text-purple-200 w-fit px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide mb-3">Global Aggregator</div>
+                            <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-2">ReliefWeb (UN OCHA)</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+                                Largest humanitarian information portal. Aggregates Situation Reports (SitReps) from the UN, Red Cross, and NGOs operating in Sri Lanka.
+                            </p>
+                        </div>
+                        
+                        <div class="bg-slate-50 dark:bg-white/5 rounded-xl p-5 text-xs text-slate-600 dark:text-slate-400 border border-slate-100 dark:border-slate-800 mb-6">
+                            <strong class="block mb-3 text-slate-900 dark:text-slate-200 text-sm">Key Documents:</strong>
+                            <ul class="space-y-2.5">
+                                <li class="flex items-start"><i class="fas fa-file-pdf text-purple-500 mr-2 mt-0.5" aria-hidden="true"></i>WFP Market Monitor (Food Prices)</li>
+                                <li class="flex items-start"><i class="fas fa-file-pdf text-purple-500 mr-2 mt-0.5" aria-hidden="true"></i>UNICEF Needs Assessments</li>
+                                <li class="flex items-start"><i class="fas fa-file-pdf text-purple-500 mr-2 mt-0.5" aria-hidden="true"></i>Humanitarian Response Plans</li>
+                            </ul>
+                        </div>
+
+                        <a href="https://reliefweb.int/country/lka" target="_blank" class="w-full inline-flex items-center justify-center px-4 py-3 bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold rounded-xl transition shadow-md hover:shadow-lg hover:shadow-purple-500/30 active:scale-95 focus:outline-none">
+                            Access Sri Lanka Reports <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
+                        </a>
+                    </article>
+
+                    <!-- Red Cross -->
+                    <article class="bg-white dark:bg-slate-900 rounded-2xl p-6 md:p-8 border border-slate-200 dark:border-slate-800 border-t-4 border-t-rose-500 resource-card transition duration-300 flex flex-col h-full hover:shadow-xl hover:shadow-rose-500/10 group focus-within:ring-2 focus-within:ring-rose-500">
+                        <div class="flex-grow">
+                            <div class="bg-rose-50 dark:bg-rose-900/40 text-rose-700 dark:text-rose-200 w-fit px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide mb-3">Field NGO</div>
+                            <h3 class="font-bold text-xl text-slate-900 dark:text-white mb-2">Sri Lanka Red Cross</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+                                Provides granular data on volunteer mobilization, first aid camps, and immediate community needs that larger government stats might miss.
+                            </p>
+                        </div>
+
+                        <div class="bg-slate-50 dark:bg-white/5 rounded-xl p-5 text-xs text-slate-600 dark:text-slate-400 border border-slate-100 dark:border-slate-800 mb-6">
+                            <strong class="block mb-3 text-slate-900 dark:text-slate-200 text-sm">Key Data:</strong>
+                            <ul class="space-y-2.5">
+                                <li class="flex items-start"><i class="fas fa-medkit text-rose-500 mr-2 mt-0.5" aria-hidden="true"></i>Medical Camp Locations</li>
+                                <li class="flex items-start"><i class="fas fa-box-open text-rose-500 mr-2 mt-0.5" aria-hidden="true"></i>Hygiene Kit Distribution Logs</li>
+                                <li class="flex items-start"><i class="fas fa-users text-rose-500 mr-2 mt-0.5" aria-hidden="true"></i>Community Resilience Reports</li>
+                            </ul>
+                        </div>
+
+                        <a href="https://www.redcross.lk/" target="_blank" class="w-full inline-flex items-center justify-center px-4 py-3 bg-rose-600 hover:bg-rose-700 text-white text-sm font-bold rounded-xl transition shadow-md hover:shadow-lg hover:shadow-rose-500/30 active:scale-95 focus:outline-none">
+                            View Field Updates <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
+                        </a>
+                    </article>
+                </div>
+            </section>
+
+            <!-- SECTION 7: Global Analysis & Articles -->
+            <section id="articles" class="scroll-mt-24">
+                <div class="flex flex-col md:flex-row md:items-center gap-4 mb-8">
+                    <div class="w-14 h-14 bg-slate-800 text-white rounded-2xl flex items-center justify-center text-3xl shadow-sm shrink-0">
+                        <i class="fas fa-newspaper" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">Global Analysis & Strategic Insights</h2>
+                        <p class="text-sm md:text-base text-slate-500 dark:text-slate-400 mt-1">In-depth features and recovery strategies from trusted international organizations.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- 1. World Bank Article -->
+                    <article class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition duration-300 overflow-hidden flex flex-col group">
+                        <div class="h-2 bg-blue-600 w-full"></div>
+                        <div class="p-6 md:p-8 flex flex-col h-full">
+                            <div class="flex items-center gap-3 mb-4">
+                                <img src="https://www.worldbank.org/content/dam/wbr/logo/logo-wb-header-en.svg" alt="World Bank Logo" class="h-6 opacity-80 dark:invert">
+                                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Feature Story</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-blue-700 dark:group-hover:text-blue-400 transition">
+                                From Crisis to Comeback: How Climate-Smart Growth Can Power Sri Lanka’s Recovery
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                                An in-depth analysis by the World Bank on how Sri Lanka can leverage green growth strategies to build resilience against future climate disasters like the 2025 floods.
+                            </p>
+                            <div class="flex items-center justify-between mt-auto pt-6 border-t border-slate-100 dark:border-slate-800">
+                                <span class="text-xs text-slate-400 font-medium"><i class="far fa-calendar-alt mr-1" aria-hidden="true"></i> Nov 20, 2025</span>
+                                <a href="https://www.worldbank.org/en/news/feature/2025/11/20/from-crisis-to-comeback-how-climate-smart-growth-can-power-sri-lanka-s-recovery" target="_blank" class="text-blue-600 dark:text-blue-400 text-sm font-bold flex items-center group-hover:underline focus:outline-none focus:underline">
+                                    Read Article <i class="fas fa-external-link-alt ml-2 text-xs" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 2. The Conversation Article -->
+                    <article class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition duration-300 overflow-hidden flex flex-col group">
+                        <div class="h-2 bg-red-800 w-full"></div>
+                        <div class="p-6 md:p-8 flex flex-col h-full">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+                                    <i class="fas fa-comments text-red-700" aria-hidden="true"></i>
+                                    <span class="text-xs font-bold uppercase tracking-wider">The Conversation</span>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-red-800 dark:group-hover:text-red-400 transition">
+                                Sri Lanka’s latest climate-driven floods expose flaws in disaster preparations
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                                Expert commentary highlighting specific vulnerabilities in current preparedness strategies and proposing urgent reforms to mitigate future climate risks.
+                            </p>
+                            <div class="flex items-center justify-between mt-auto pt-6 border-t border-slate-100 dark:border-slate-800">
+                                <span class="text-xs text-slate-400 font-medium"><i class="far fa-calendar-alt mr-1" aria-hidden="true"></i> Nov 2025</span>
+                                <a href="https://theconversation.com/sri-lankas-latest-climate-driven-floods-expose-flaws-in-disaster-preparations-heres-what-needs-to-change-271181" target="_blank" class="text-red-800 dark:text-red-400 text-sm font-bold flex items-center group-hover:underline focus:outline-none focus:underline">
+                                    Read Analysis <i class="fas fa-external-link-alt ml-2 text-xs" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 3. ScienceDirect Article (NEW) -->
+                    <article class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition duration-300 overflow-hidden flex flex-col group">
+                        <div class="h-2 bg-violet-600 w-full"></div>
+                        <div class="p-6 md:p-8 flex flex-col h-full">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+                                    <i class="fas fa-atom text-violet-500" aria-hidden="true"></i>
+                                    <span class="text-xs font-bold uppercase tracking-wider">ScienceDirect</span>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-violet-600 dark:group-hover:text-violet-400 transition">
+                                Finite Element Modeling for Dam Breach Parameters & Hydrodynamic Simulations
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                                A new method using finite element modeling to calculate dam breach parameters during earthquake-induced failures, supported with 2D hydrodynamic simulations and hazard scenario analysis.
+                            </p>
+                            <div class="flex items-center justify-between mt-auto pt-6 border-t border-slate-100 dark:border-slate-800">
+                                <span class="text-xs text-slate-400 font-medium"><i class="far fa-calendar-alt mr-1" aria-hidden="true"></i> 2024</span>
+                                <a href="https://www.sciencedirect.com/science/article/pii/S0048969724016462?via%3Dihub" target="_blank" class="text-violet-600 dark:text-violet-400 text-sm font-bold flex items-center group-hover:underline focus:outline-none focus:underline">
+                                    Read Research <i class="fas fa-external-link-alt ml-2 text-xs" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 4. WMO Report -->
+                    <article class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition duration-300 overflow-hidden flex flex-col group">
+                        <div class="h-2 bg-sky-600 w-full"></div>
+                        <div class="p-6 md:p-8 flex flex-col h-full">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+                                    <i class="fas fa-cloud-sun-rain text-sky-500" aria-hidden="true"></i>
+                                    <span class="text-xs font-bold uppercase tracking-wider">WMO Report</span>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition">
+                                Devastating Rainfall in Asia Claims Hundreds of Lives
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                                Official report from the World Meteorological Organization on the severe impact of monsoon rainfall and tropical cyclones across South and Southeast Asia.
+                            </p>
+                            <div class="flex items-center justify-between mt-auto pt-6 border-t border-slate-100 dark:border-slate-800">
+                                <span class="text-xs text-slate-400 font-medium"><i class="far fa-calendar-alt mr-1" aria-hidden="true"></i> Dec 2025</span>
+                                <a href="https://wmo.int/media/news/devastating-rainfall-asia-claims-hundreds-of-lives" target="_blank" class="text-sky-600 dark:text-sky-400 text-sm font-bold flex items-center group-hover:underline focus:outline-none focus:underline">
+                                    Read Report <i class="fas fa-external-link-alt ml-2 text-xs" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 5. The Hindu Article -->
+                    <article class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition duration-300 overflow-hidden flex flex-col group">
+                        <div class="h-2 bg-red-700 w-full"></div>
+                        <div class="p-6 md:p-8 flex flex-col h-full">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+                                    <i class="fas fa-images text-red-600" aria-hidden="true"></i>
+                                    <span class="text-xs font-bold uppercase tracking-wider">The Hindu</span>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-red-700 dark:group-hover:text-red-400 transition">
+                                Aftermath of Cyclone Ditwah: Sri Lanka Through Satellite Images
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                                A visual analysis of the devastation caused by the cyclone. Features before-and-after satellite imagery assessing the scale of flooding and infrastructure damage.
+                            </p>
+                            <div class="flex items-center justify-between mt-auto pt-6 border-t border-slate-100 dark:border-slate-800">
+                                <span class="text-xs text-slate-400 font-medium"><i class="far fa-calendar-alt mr-1" aria-hidden="true"></i> Dec 2025</span>
+                                <a href="https://www.thehindu.com/news/international/aftermath-of-cyclone-ditwah-sri-lanka-through-satellite-images/article70353536.ece" target="_blank" class="text-red-700 dark:text-red-400 text-sm font-bold flex items-center group-hover:underline focus:outline-none focus:underline">
+                                    View Photo Story <i class="fas fa-external-link-alt ml-2 text-xs" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 6. IWMI Article -->
+                    <article class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition duration-300 overflow-hidden flex flex-col group">
+                        <div class="h-2 bg-teal-600 w-full"></div>
+                        <div class="p-6 md:p-8 flex flex-col h-full">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+                                    <i class="fas fa-water text-teal-500" aria-hidden="true"></i>
+                                    <span class="text-xs font-bold uppercase tracking-wider">IWMI News</span>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition">
+                                Sri Lanka Responds to Cyclone Ditwah: Water Management Challenges
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                                The International Water Management Institute (IWMI) discusses the hydrological impact of the cyclone and the critical need for resilient water infrastructure in recovery efforts.
+                            </p>
+                            <div class="flex items-center justify-between mt-auto pt-6 border-t border-slate-100 dark:border-slate-800">
+                                <span class="text-xs text-slate-400 font-medium"><i class="far fa-calendar-alt mr-1" aria-hidden="true"></i> Dec 2025</span>
+                                <a href="https://www.iwmi.org/news/sri-lanka-responds-to-cyclone-ditwah/" target="_blank" class="text-teal-600 dark:text-teal-400 text-sm font-bold flex items-center group-hover:underline focus:outline-none focus:underline">
+                                    Read Article <i class="fas fa-external-link-alt ml-2 text-xs" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 7. India Today Article -->
+                    <article class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition duration-300 overflow-hidden flex flex-col group">
+                        <div class="h-2 bg-orange-600 w-full"></div>
+                        <div class="p-6 md:p-8 flex flex-col h-full">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+                                    <i class="fas fa-satellite-dish text-orange-500" aria-hidden="true"></i>
+                                    <span class="text-xs font-bold uppercase tracking-wider">India Today</span>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition">
+                                ISRO satellites show Cyclone Ditwah barreling into Sri Lanka
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                                ISRO's satellite imagery captures the intensification of Cyclone Ditwah as it approaches Sri Lanka. India remains on high alert with disaster response teams on standby.
+                            </p>
+                            <div class="flex items-center justify-between mt-auto pt-6 border-t border-slate-100 dark:border-slate-800">
+                                <span class="text-xs text-slate-400 font-medium"><i class="far fa-calendar-alt mr-1" aria-hidden="true"></i> Nov 28, 2025</span>
+                                <a href="https://www.indiatoday.in/science/story/isro-satellites-shows-cyclone-ditwah-barreling-into-sri-lanka-india-on-standby-2827564-2025-11-28" target="_blank" class="text-orange-600 dark:text-orange-400 text-sm font-bold flex items-center group-hover:underline focus:outline-none focus:underline">
+                                    Read Report <i class="fas fa-external-link-alt ml-2 text-xs" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 8. Placeholder for Next Article -->
+                    <article class="bg-slate-50 dark:bg-slate-900 rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 p-8 flex flex-col items-center justify-center text-center hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                        <div class="w-14 h-14 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-300 dark:text-slate-500 text-2xl mb-4 shadow-sm">
+                            <i class="fas fa-plus" aria-hidden="true"></i>
+                        </div>
+                        <h4 class="text-slate-500 dark:text-slate-400 font-medium">More Insights Coming Soon</h4>
+                        <p class="text-slate-400 dark:text-slate-500 text-xs mt-2 max-w-xs">
+                            This section is curated with verified reports from UN, WHO, and other global bodies.
+                        </p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- SECTION 8: Contribute & Submit (NEW) -->
+            <section id="contribute" class="scroll-mt-24 border-t border-slate-200 dark:border-slate-800 pt-16 pb-12">
+                <div class="max-w-4xl mx-auto bg-white dark:bg-slate-900 rounded-2xl shadow-xl overflow-hidden border border-slate-200 dark:border-slate-800">
+                    <div class="p-8 md:p-10 text-center">
+                        
+                        <!-- Top Section: Verified Source -->
+                        <div class="mb-12">
+                            <div class="inline-block p-4 bg-blue-100 dark:bg-blue-900/30 rounded-full text-blue-600 dark:text-blue-400 mb-4 shadow-sm animate-bounce-slow">
+                                <i class="fas fa-circle-plus text-3xl" aria-hidden="true"></i>
+                            </div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-3">Know a Verified Source?</h2>
+                            <p class="text-slate-500 dark:text-slate-400 mb-6 max-w-lg mx-auto leading-relaxed">
+                                Help us keep this hub accurate and up to date. If you know a trusted data source, platform, or report, or financial relief resource, such as donation portals or treasury support programs,<br>
+                                please share it with us and submit it for review.<br>
+                                You can also tell us about any other helpful sources we should add.
+                            </p>
+                            <a href="https://forms.gle/ACvkN8SRReFo1Ccg9" target="_blank" class="inline-flex items-center justify-center px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 active:scale-95 focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 outline-none w-full sm:w-auto">
+                                <i class="fas fa-paper-plane mr-2" aria-hidden="true"></i> Submit Resource
+                            </a>
+                        </div>
+
+                        <!-- Divider -->
+                        <div class="w-full h-px bg-slate-200 dark:bg-slate-800 mb-12"></div>
+
+                        <!-- Bottom Section: Share Thoughts -->
+                        <div>
+                            <div class="inline-block p-4 bg-purple-100 dark:bg-purple-900/30 rounded-full text-purple-600 dark:text-purple-400 mb-4 shadow-sm animate-bounce-slow">
+                                <i class="fas fa-comment-dots text-3xl" aria-hidden="true"></i>
+                            </div>
+                            <h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-3">Share Your Thoughts</h2>
+                            <p class="text-slate-500 dark:text-slate-400 mb-6 max-w-lg mx-auto leading-relaxed">
+                                We also welcome any feedback or suggestions to improve the platform.<br>
+                                Your input is highly valued and helps us make this platform better for everyone.
+                            </p>
+                            <a href="https://forms.gle/rkeW7WK3DCySmR1A6" target="_blank" class="inline-flex items-center justify-center px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 active:scale-95 focus:ring-4 focus:ring-purple-200 dark:focus:ring-purple-900 outline-none w-full sm:w-auto">
+                                <i class="fas fa-lightbulb mr-2" aria-hidden="true"></i> Submit Feedback
+                            </a>
+                            
+                            <p class="text-xs text-center text-slate-400 mt-6 flex items-center justify-center gap-1">
+                                <i class="fas fa-lock" aria-hidden="true"></i> All submissions are reviewed by the site administrator.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        </div> <!-- End of Original Content -->
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-12 md:py-16 mt-auto relative">
+        <div class="absolute inset-0 bg-slate-50 dark:bg-slate-950 opacity-50 pointer-events-none"></div>
+        <div class="container mx-auto px-4 text-center relative z-10">
+            
+            <!-- Personal Message -->
+            <div class="mb-10 max-w-2xl mx-auto">
+                <p class="text-slate-600 dark:text-slate-400 text-base md:text-lg font-medium leading-relaxed italic">
+                    "Huge respect to everyone behind these platforms and datasets.<br>
+                    Let’s keep Sri Lanka safe and informed for the future generations ❤️"
+                </p>
+                <div class="mt-6 flex flex-col items-center gap-2">
+                    <span class="text-xs font-bold text-slate-400 dark:text-slate-600 uppercase tracking-widest">Curated & Made By</span>
+                    
+                    <!-- Author & Social Links -->
+                    <div class="inline-flex items-center gap-3 px-5 py-2.5 bg-white dark:bg-slate-800 rounded-full shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-md transition-all group">
+                        <div class="flex items-center gap-3">
+                            <a href="https://www.linkedin.com/in/thanuja-senarathne-1122a828b" target="_blank" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-transform transform hover:scale-110" aria-label="LinkedIn Profile">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                            <a href="https://web.facebook.com/thanujaLS" target="_blank" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-transform transform hover:scale-110" aria-label="Facebook Profile">
+                                <i class="fab fa-facebook text-xl"></i>
+                            </a>
+                            <a href="https://wa.me/+94760348948" target="_blank" class="text-green-500 hover:text-green-700 transition-transform transform hover:scale-110" aria-label="WhatsApp Contact">
+                                <i class="fab fa-whatsapp text-xl"></i>
+                            </a>
+                        </div>
+                        <span class="w-px h-4 bg-slate-300 dark:bg-slate-600"></span>
+                        
+                        <!-- NEW: Animated Name with Gradient -->
+                        <span class="font-extrabold text-sm sm:text-base bg-gradient-to-r from-blue-600 via-purple-500 to-blue-600 dark:from-blue-400 dark:via-purple-400 dark:to-blue-400 animate-text-gradient">
+                            Thanuja Lakshan Senarathne
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-slate-400 dark:text-slate-600 text-xs pt-8 border-t border-slate-200 dark:border-slate-800">
+                <p>This site acts as a directory and does not host data itself. Always verify with Official Sources.</p>
+                <p class="mt-2">Last updated: Dec 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu, Theme Toggle & Search Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Theme Toggle Logic ---
+            const themeBtn = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            const htmlElement = document.documentElement;
+
+            if (themeBtn && themeIcon && htmlElement) {
+                // Set initial icon based on current theme
+                if (htmlElement.classList.contains('dark')) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                }
+
+                themeBtn.addEventListener('click', () => {
+                    htmlElement.classList.toggle('dark');
+                    // Add rotation animation
+                    themeIcon.style.transform = 'rotate(360deg)';
+                    setTimeout(() => { themeIcon.style.transform = 'rotate(0deg)'; }, 500);
+                    
+                    if (htmlElement.classList.contains('dark')) {
+                        localStorage.theme = 'dark';
+                        themeIcon.classList.remove('fa-moon');
+                        themeIcon.classList.add('fa-sun');
+                    } else {
+                        localStorage.theme = 'light';
+                        themeIcon.classList.remove('fa-sun');
+                        themeIcon.classList.add('fa-moon');
+                    }
+                });
+            }
+
+            // --- Mobile Menu Logic ---
+            const menuBtn = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuLinks = document.querySelectorAll('.menu-link');
+
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    // Optional: Toggle icon between bars and times (X)
+                    const icon = menuBtn.querySelector('i');
+                    if (mobileMenu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    } else {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    }
+                });
+
+                // Close menu when a link is clicked
+                menuLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                        const icon = menuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    });
+                });
+            }
+
+            // --- Search Functionality ---
+            const searchInput = document.getElementById('global-search');
+            const clearBtn = document.getElementById('clear-search');
+            const searchStats = document.getElementById('search-stats');
+            const matchCountSpan = document.getElementById('match-count');
+            const navSearchBtn = document.getElementById('nav-search-btn');
+
+            // Layout Elements
+            const heroContent = document.getElementById('hero-content');
+            const heroActions = document.getElementById('hero-actions');
+            const originalContent = document.getElementById('original-content');
+            const searchResultsView = document.getElementById('search-results-view');
+            const searchGrid = document.getElementById('search-grid');
+            const noResultsMsg = document.getElementById('no-results-msg');
+            const allCards = document.querySelectorAll('#original-content article');
+
+            function levenshtein(a, b) {
+                if (a.length === 0) return b.length;
+                if (b.length === 0) return a.length;
+                const matrix = [];
+                for (let i = 0; i <= b.length; i++) matrix[i] = [i];
+                for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+                for (let i = 1; i <= b.length; i++) {
+                    for (let j = 1; j <= a.length; j++) {
+                        if (b.charAt(i - 1) === a.charAt(j - 1)) {
+                            matrix[i][j] = matrix[i - 1][j - 1];
+                        } else {
+                            matrix[i][j] = Math.min(matrix[i - 1][j - 1] + 1, Math.min(matrix[i][j - 1] + 1, matrix[i - 1][j] + 1));
+                        }
+                    }
+                }
+                return matrix[b.length][a.length];
+            }
+
+            function isMatch(text, query) {
+                const cleanText = text.toLowerCase();
+                const cleanQuery = query.toLowerCase();
+                if (cleanText.includes(cleanQuery)) return true;
+                const words = cleanText.split(/\s+/);
+                const queryWords = cleanQuery.split(/\s+/);
+                for (let qWord of queryWords) {
+                    if (qWord.length < 3) continue;
+                    const foundFuzzy = words.some(word => {
+                        const dist = levenshtein(word, qWord);
+                        const allowedEdits = Math.floor(word.length / 3);
+                        return dist <= allowedEdits;
+                    });
+                    if (foundFuzzy) return true;
+                }
+                return false;
+            }
+
+            function performSearch() {
+                const query = searchInput.value.trim();
+                if (query.length === 0) {
+                    heroContent.classList.remove('opacity-0', 'hidden');
+                    heroActions.classList.remove('opacity-0', 'hidden');
+                    originalContent.classList.remove('hidden');
+                    searchResultsView.classList.add('hidden');
+                    clearBtn.classList.add('hidden');
+                    searchStats.classList.add('hidden');
+                    return;
+                }
+                clearBtn.classList.remove('hidden');
+                heroContent.classList.add('opacity-0', 'hidden');
+                heroActions.classList.add('opacity-0', 'hidden');
+                originalContent.classList.add('hidden');
+                searchResultsView.classList.remove('hidden');
+                searchGrid.innerHTML = '';
+                let matchCount = 0;
+                allCards.forEach(card => {
+                    const fullText = card.innerText || card.textContent;
+                    if (isMatch(fullText, query)) {
+                        const clonedCard = card.cloneNode(true);
+                        clonedCard.classList.remove('hidden'); 
+                        
+                        // --- FIX 1: MAIN LAYOUT ---
+                        // Forces wide horizontal cards (Crisis Mgmt) to stack vertically
+                        const wideLayoutContainer = clonedCard.querySelector('.md\\:flex-row');
+                        if (wideLayoutContainer) {
+                            wideLayoutContainer.classList.remove('md:flex-row');
+                            wideLayoutContainer.classList.add('flex-col');
+                        }
+
+                        // --- FIX 2: KEY DATA BOX SPACING (For Tri-Forces/DMC cards) ---
+                        // The 'Key Data' grid normally splits into 3 columns on desktop.
+                        // In the restricted space of a search result card, this squashes text.
+                        // We remove the 3-column rule and force a single-column stack list.
+                        const innerGrid = clonedCard.querySelector('.sm\\:grid-cols-3');
+                        if (innerGrid) {
+                            innerGrid.classList.remove('sm:grid-cols-3');
+                            innerGrid.classList.add('grid-cols-1');
+                            // Optional: Add a little extra vertical spacing since they are now stacked
+                            innerGrid.classList.add('gap-y-2');
+                        }
+                        
+                        searchGrid.appendChild(clonedCard);
+                        matchCount++;
+                    }
+                });
+                matchCountSpan.innerText = matchCount;
+                searchStats.classList.remove('hidden');
+                if (matchCount === 0) {
+                    noResultsMsg.classList.remove('hidden');
+                } else {
+                    noResultsMsg.classList.add('hidden');
+                }
+            }
+
+            if (searchInput) {
+                searchInput.addEventListener('input', performSearch);
+                searchInput.addEventListener('keyup', (e) => { if (e.key === 'Enter') performSearch(); });
+                clearBtn.addEventListener('click', () => { searchInput.value = ''; performSearch(); searchInput.focus(); });
+            }
+
+            if (navSearchBtn && searchInput) {
+                navSearchBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    setTimeout(() => { searchInput.focus(); }, 500);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
