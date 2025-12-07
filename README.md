@@ -4,9 +4,11 @@ A central access point for verified disaster data, tools, and platforms related 
 
 This hub gathers official datasets, real-time dashboards, satellite intelligence, and tools created by the community in one location. This way, anyone can see what is happening, how organizations are responding, and where to get help.
 
-🎯 Why This Exists ?
+----------------------------------
 
-During disasters, many tools and reports are published by different agencies/parties — but most people don’t know where to find them.
+Why This Exists ?
+
+During disasters, many tools and reports come from different agencies and parties. However, most people don’t know where to find them.
 
 This hub helps:
 
@@ -22,11 +24,13 @@ This hub helps:
 
 Basically, this is a directory of trusted source.
 
-🧭 What You Can Find Here 
+----------------------------------
 
-🚨 Real-Time Response Tools
+ What You Can Find Here 
 
-Live dashboards showing:
+1.Real-Time Response Tools
+ 
+-Live dashboards showing:
 
 •	flood levels
 
@@ -38,9 +42,11 @@ Live dashboards showing:
 
 •	emergency status
 
-🛰 Satellite Intelligence & Map Visualization
+----------------------------------
 
-Open satellite data, map layers, and visualization tools:
+2.Satellite Intelligence & Map Visualization
+
+-Open satellite data, map layers, and visualization tools:
 
 •	Sentinel-2 false color imagery
 
@@ -50,10 +56,12 @@ Open satellite data, map layers, and visualization tools:
 
 •	open geo data portals
 
+----------------------------------
 
-🧪 Scientific & Environmental Data
 
-From research institutes and environmental agencies:
+3.Scientific & Environmental Data
+
+-From research institutes and environmental agencies:
 
 •	hazard reports
 
@@ -63,9 +71,11 @@ From research institutes and environmental agencies:
 
 •	forecasting tools
 
-🛡 Crisis Management
+----------------------------------
 
-National guidance and operational reports:
+4.Crisis Management
+
+-National guidance and operational reports:
 
 •	Situation Reports (SitRep)
 
@@ -75,9 +85,11 @@ National guidance and operational reports:
 
 •	emergency policies
 
-❤️ Humanitarian Support
+----------------------------------
 
-Verified relief links:
+5.Humanitarian Support
+
+-Verified relief links:
 
 •	shelter information
 
@@ -87,9 +99,11 @@ Verified relief links:
 
 •	relief fund circulars
 
-💡 Insights
+----------------------------------
 
-Analysis from:
+6.Insights
+
+- Analysis from:
 
 •	international organizations
 
@@ -99,9 +113,11 @@ Analysis from:
 
 •	expert reports
 
-🤝 Contribute
+----------------------------------
 
-We welcome verified sources and community contributions.
+7.Contribute
+
+- We welcome verified sources and community contributions.
 
 If you have:
 
@@ -119,6 +135,8 @@ Your submission will be reviewed for reliability.
 
 We also value feedback to improve UI/UX, content quality, and accessibility.
 
+----------------------------------
+
 
 🛡️ Disclaimer
 
@@ -127,6 +145,8 @@ This hub does not generate data.
 All links belong to their respective organizations.
 
 We only collect & index verified sources for public access.
+
+----------------------------------
 
 
 👨‍💻 Developed By
@@ -137,6 +157,7 @@ Undergraduate — BSc (Hons) in Urban Informatics & Planning
 
 University of Moratuwa
 
+----------------------------------
 
 ⭐ Support
 
@@ -144,3 +165,4 @@ If you believe in open data and public awareness,
 
 please share the platform with others.
 
+----------------------------------
