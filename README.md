@@ -2,7 +2,7 @@
 
 A central access point for verified disaster data, tools, and platforms related to the recent floods, landslides, and cyclone Ditwah impact in Sri Lanka.
 
-This hub collects official datasets, real-time dashboards, satellite intelligence, and community-built tools into one place. So, anyone can understand what’s happening, how organizations are responding, and where to find help.
+This hub gathers official datasets, real-time dashboards, satellite intelligence, and tools created by the community in one location. This way, anyone can see what is happening, how organizations are responding, and where to get help.
 
 🎯 Why This Exists ?
 
