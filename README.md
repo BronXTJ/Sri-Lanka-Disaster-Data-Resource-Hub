@@ -27,6 +27,8 @@ Basically, this is a directory of trusted source.
 ----------------------------------
 
  What You Can Find Here 
+ 
+ You can explore multiple sections here, each organized by a specific category.
 
 1.Real-Time Response Tools
  
