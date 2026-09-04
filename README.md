@@ -1,170 +1,88 @@
-🇱🇰 Sri Lanka Disaster Data Resource Hub
+# 🇱🇰 Sri Lanka Disaster Data Resource Hub
 
-A central access point for verified disaster data, tools, and platforms related to the recent floods, landslides, and cyclone Ditwah impact in Sri Lanka.
+A central directory of **verified disaster data, dashboards, and relief links** for floods, landslides, and **Cyclone Ditwah** in Sri Lanka.
 
-This hub gathers official datasets, real-time dashboards, satellite intelligence, and tools created by the community in one location. This way, anyone can see what is happening, how organizations are responding, and where to get help.
+The hub does not generate data. It indexes official and community sources so students, researchers, citizens, and volunteers can see what is happening, how agencies are responding, and where to get help.
 
-----------------------------------
+🌐 **Live site:** [https://bronxtj.github.io/Sri-Lanka-Disaster-Data-Resource-Hub/](https://bronxtj.github.io/Sri-Lanka-Disaster-Data-Resource-Hub/)
 
-Why This Exists ?
+---
 
-During disasters, many tools and reports come from different agencies and parties. However, most people don’t know where to find them.
+## 📌 About
 
-This hub helps:
+During disasters, reports and tools appear across many agencies. Most people do not know where to find them. This hub gathers those links in one place.
 
-•	Students learn from real data
+- 🎓 Students can learn from real operational data
+- 🔬 Researchers can reach official datasets and SitReps
+- 👥 Citizens can follow the live situation
+- 🤝 Volunteers can find verified support and donation channels
+- 📚 Future readers can see how the community responded
 
-•	Researchers access official sources
+---
 
-•	Citizens see the live situation
+## 🧭 What you'll find
 
-•	Volunteers find support links
+| Section | What you'll find |
+|--------|-------------------|
+| **Scientific & Environmental Data** | Meteorology Dept., NBRO landslide warnings, Irrigation Dept. river and reservoir data |
+| **Satellite Intelligence & Maps** | Vantor/Maxar open imagery, Copernicus EMS, International Charter, ESA, Navy inundation maps |
+| **Real-Time Response Tools** | Community platforms for SOS, damage maps, missing persons, river alerts, and tourist assistance |
+| **Crisis Management & Statistics** | DMC SitReps, Tri-Forces operations, Treasury and verified fundraising links |
+| **International & Humanitarian Data** | ReliefWeb (UN OCHA), Sri Lanka Red Cross |
+| **Global Analysis & Insights** | World Bank, WMO, IWMI, and other verified commentary |
+| **Contribute** | Submit a trusted source or feedback for review |
 
-•	Future generations understand how we responded as a community
+🔍 Use search on the live site to jump to a dataset or organisation.
 
-Basically, this is a directory of trusted source.
+---
 
-----------------------------------
+## 🛠️ Tech stack
 
- What You Can Find Here 
- 
- You can explore multiple sections here, each organized by a specific category.
+| Layer | Tools |
+|-------|--------|
+| Site | Single-page **HTML** with **Tailwind CSS** (CDN) |
+| Hosting | **GitHub Pages** (`main` / site root) |
 
-1.Real-Time Response Tools
- 
--Live dashboards showing:
+No build step or API key is required.
 
-•	flood levels
+---
 
-•	rainfall + weather alerts
+## 🚀 Getting started
 
-•	rescue operations
+Open the live site, or run the file locally:
 
-•	access routes
+```bash
+git clone https://github.com/BronXTJ/Sri-Lanka-Disaster-Data-Resource-Hub.git
+cd Sri-Lanka-Disaster-Data-Resource-Hub
+```
 
-•	emergency status
+Then open `index.html` in a browser.
 
-----------------------------------
+---
 
-2.Satellite Intelligence & Map Visualization
+## 🛡️ Disclaimer
 
--Open satellite data, map layers, and visualization tools:
+This hub **does not produce** datasets. All links belong to their respective organisations. Sources are collected and indexed for public access; submissions are reviewed before they appear.
 
-•	Sentinel-2 false color imagery
+---
 
-•	flood extent layers
+## 👤 Author
 
-•	landslide risk maps
+**Thanuja Lakshan Senarathne**
 
-•	open geo data portals
+Undergraduate — BSc (Hons) in Urban Informatics & Planning, University of Moratuwa
 
-----------------------------------
+- 🐙 GitHub: [@BronXTJ](https://github.com/BronXTJ)
+- 💼 LinkedIn: [thanuja-senarathne](https://www.linkedin.com/in/thanuja-senarathne-1122a828b)
 
+---
 
-3.Scientific & Environmental Data
+## ⚖️ License & reuse
 
--From research institutes and environmental agencies:
+Academic / public-interest project. Please credit the author if you reuse the directory structure, and respect the terms of each linked organisation.
 
-•	hazard reports
+---
 
-•	impact studies
-
-•	hydrological models
-
-•	forecasting tools
-
-----------------------------------
-
-4.Crisis Management
-
--National guidance and operational reports:
-
-•	Situation Reports (SitRep)
-
-•	IDP counts
-
-•	safe centers
-
-•	emergency policies
-
-----------------------------------
-
-5.Humanitarian Support
-
--Verified relief links:
-
-•	shelter information
-
-•	donation portals
-
-•	support programs
-
-•	relief fund circulars
-
-----------------------------------
-
-6.Insights
-
-- Analysis from:
-
-•	international organizations
-
-•	World Bank, UN, NGOs
-
-•	policy briefs
-
-•	expert reports
-
-----------------------------------
-
-7.Contribute
-
-- We welcome verified sources and community contributions.
-
-If you have:
-
-•	a trusted dataset
-
-•	a useful dashboard
-
-•	a research report
-
-•	a relief support link
-
-Please submit it through the Contribute section on the website.
-
-Your submission will be reviewed for reliability.
-
-We also value feedback to improve UI/UX, content quality, and accessibility.
-
-----------------------------------
-
-
-🛡️ Disclaimer
-
-This hub does not generate data.
-
-All links belong to their respective organizations.
-
-We only collect & index verified sources for public access.
-
-----------------------------------
-
-
-👨‍💻 Developed By
-
-Thanuja Lakshan Senarathne
-
-Undergraduate — BSc (Hons) in Urban Informatics & Planning
-
-University of Moratuwa
-
-----------------------------------
-
-⭐ Support
-
-If you believe in open data and public awareness,
-
-please share the platform with others.
-
-----------------------------------
+<p align="center">
+  <sub>Open data · Public awareness · Sri Lanka 🇱🇰</sub>
+</p>
